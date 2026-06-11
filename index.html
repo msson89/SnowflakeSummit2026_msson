@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Snowflake Summit 2026 · Platform Keynote Summary by msson</title>
+<title>Snowflake Summit 2026 · 플랫폼 키노트 SE 요약</title>
 <style>
 :root{
   --bg:#08101e;
@@ -22,17 +22,9 @@
 html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;
   font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans KR',sans-serif}
 
-/* SLIDE SHELL */
 #deck{position:fixed;top:0;left:0;right:0;bottom:var(--nav);overflow:hidden}
-.slide{
-  position:absolute;inset:0;
-  display:none;flex-direction:column;
-  background:var(--bg);color:var(--text);
-  overflow-y:auto;overflow-x:hidden;
-}
+.slide{position:absolute;inset:0;display:none;flex-direction:column;background:var(--bg);color:var(--text);overflow-y:auto;overflow-x:hidden}
 .slide.active{display:flex}
-
-/* transitions */
 .slide.er{animation:er .3s cubic-bezier(.4,0,.2,1) both}
 .slide.el{animation:el .3s cubic-bezier(.4,0,.2,1) both}
 .slide.xl{animation:xl .3s cubic-bezier(.4,0,.2,1) both}
@@ -42,68 +34,50 @@ html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;
 @keyframes xl{from{transform:none;opacity:1}to{transform:translateX(-100%);opacity:0}}
 @keyframes xr{from{transform:none;opacity:1}to{transform:translateX(100%);opacity:0}}
 
-/* NAVBAR */
-#navbar{
-  position:fixed;bottom:0;left:0;right:0;height:var(--nav);
-  background:rgba(8,16,30,.95);backdrop-filter:blur(16px);
-  border-top:1px solid var(--border);
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 clamp(12px,3vw,32px);z-index:9999;
-}
-.nbtn{background:none;border:1px solid var(--border);color:var(--muted);
-  padding:5px clamp(12px,2vw,22px);border-radius:6px;cursor:pointer;
-  font-size:clamp(11px,1.2vw,13px);transition:all .15s}
+#navbar{position:fixed;bottom:0;left:0;right:0;height:var(--nav);background:rgba(8,16,30,.95);backdrop-filter:blur(16px);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(12px,3vw,32px);z-index:9999}
+.nbtn{background:none;border:1px solid var(--border);color:var(--muted);padding:5px clamp(12px,2vw,22px);border-radius:6px;cursor:pointer;font-size:clamp(11px,1.2vw,13px);transition:all .15s}
 .nbtn:hover{border-color:var(--blue);color:var(--blue)}
 .nbtn.purple:hover{border-color:var(--purple);color:var(--purple)}
 #ctr{font-size:clamp(11px,1.2vw,13px);color:var(--muted)}
-#prog{position:fixed;top:0;left:0;height:3px;
-  background:linear-gradient(90deg,var(--blue),var(--purple));
-  transition:width .3s ease;z-index:9999}
+#prog{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--purple));transition:width .3s ease;z-index:9999}
 
-/* SHARED LAYOUT */
 .pad{padding:clamp(28px,4vh,56px) clamp(24px,5vw,80px)}
-.eyebrow{font-size:clamp(10px,1vw,12px);letter-spacing:.18em;color:var(--blue);
-  font-weight:700;text-transform:uppercase;margin-bottom:.6em}
+.eyebrow{font-size:clamp(10px,1vw,12px);letter-spacing:.18em;color:var(--blue);font-weight:700;text-transform:uppercase;margin-bottom:.6em}
 .eyebrow.pu{color:var(--purple)}
-.h1{font-size:clamp(26px,4vw,52px);font-weight:900;line-height:1.15;
-  background:linear-gradient(130deg,#fff 35%,var(--blue) 100%);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.h1{font-size:clamp(26px,4vw,52px);font-weight:900;line-height:1.15;background:linear-gradient(130deg,#fff 35%,var(--blue) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .h2{font-size:clamp(20px,2.8vw,38px);font-weight:800;line-height:1.2;margin-bottom:.3em}
 .sub{font-size:clamp(13px,1.4vw,16px);color:var(--muted);line-height:1.6;margin-bottom:clamp(16px,2.5vh,32px)}
-.divline{width:48px;height:3px;border-radius:2px;
-  background:linear-gradient(90deg,var(--blue),var(--purple));margin:clamp(8px,1.5vh,14px) 0 clamp(14px,2.5vh,24px)}
+.divline{width:48px;height:3px;border-radius:2px;background:linear-gradient(90deg,var(--blue),var(--purple));margin:clamp(8px,1.5vh,14px) 0 clamp(14px,2.5vh,24px)}
 
-/* cards, bullets */
 .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:clamp(16px,2vh,24px) clamp(16px,2vw,24px)}
 .card:hover{border-color:var(--blue)}
 .card.pu:hover{border-color:var(--purple)}
 
 .blist{list-style:none}
-.blist li{padding:clamp(7px,1vh,11px) 0 clamp(7px,1vh,11px) clamp(16px,2vw,22px);
-  position:relative;border-bottom:1px solid rgba(255,255,255,.05);
-  font-size:clamp(12px,1.3vw,14.5px);color:#cbd5e1;line-height:1.65}
+.blist li{padding:clamp(7px,1vh,11px) 0 clamp(7px,1vh,11px) clamp(16px,2vw,22px);position:relative;border-bottom:1px solid rgba(255,255,255,.05);font-size:clamp(12px,1.3vw,14.5px);color:#cbd5e1;line-height:1.65}
 .blist li:last-child{border-bottom:none}
 .blist li::before{content:'\25B8';position:absolute;left:0;color:var(--blue);font-size:10px;top:clamp(9px,1.2vh,13px)}
 .blist li strong{color:var(--text)}
 
 .stat-row{display:flex;gap:clamp(10px,2vw,18px);flex-wrap:wrap;margin-bottom:clamp(12px,2vh,20px)}
-.stat-card{background:var(--card);border:1px solid var(--border);border-radius:10px;
-  padding:clamp(12px,1.5vh,18px) clamp(14px,1.8vw,22px);text-align:center;flex:1;min-width:80px}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:clamp(12px,1.5vh,18px) clamp(14px,1.8vw,22px);text-align:center;flex:1;min-width:80px}
 .stat-n{font-size:clamp(24px,3.5vw,42px);font-weight:900;color:var(--blue);line-height:1}
-.stat-n.pu{color:var(--purple)} .stat-n.gr{color:var(--green)}
+.stat-n.pu{color:var(--purple)} .stat-n.gr{color:var(--green)} .stat-n.rd{color:var(--red)}
+
 .stat-l{font-size:clamp(10px,.9vw,12px);color:var(--muted);margin-top:3px}
 
-.quote{background:rgba(41,181,232,.07);border-left:3px solid var(--blue);
-  border-radius:0 10px 10px 0;padding:clamp(12px,1.8vh,18px) clamp(14px,2vw,22px);
-  font-style:italic;font-size:clamp(12px,1.3vw,15px);color:#e2e8f0;line-height:1.7;margin-top:auto}
+.quote{background:rgba(41,181,232,.07);border-left:3px solid var(--blue);border-radius:0 10px 10px 0;padding:clamp(12px,1.8vh,18px) clamp(14px,2vw,22px);font-style:italic;font-size:clamp(12px,1.3vw,15px);color:#e2e8f0;line-height:1.7;margin-top:auto}
 .quote cite{display:block;font-size:clamp(10px,.9vw,12px);color:var(--muted);margin-top:6px;font-style:normal}
-.quote.se{background:rgba(52,211,153,.07);border-left-color:var(--green)}
 
 .ibox{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:clamp(14px,1.8vh,20px)}
-.ibox-t{font-size:clamp(10px,.9vw,12px);font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--blue);margin-bottom:clamp(8px,1.2vh,12px)}
+.ibox-t{font-size:clamp(10px,.9vw,12px);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:clamp(8px,1.2vh,12px)}
 .ibox-t.pu{color:var(--purple)}
 .ibox-t.gr{color:var(--green)}
+
+.dsteps{counter-reset:d;list-style:none}
+.dsteps li{counter-increment:d;padding:clamp(6px,.8vh,9px) 0 clamp(6px,.8vh,9px) clamp(26px,3vw,34px);position:relative;font-size:clamp(11px,1.1vw,13px);color:var(--muted);line-height:1.55;border-bottom:1px solid rgba(255,255,255,.04)}
+.dsteps li:last-child{border-bottom:none}
+.dsteps li::before{content:counter(d);position:absolute;left:0;top:clamp(6px,.8vh,9px);width:clamp(18px,1.8vw,22px);height:clamp(18px,1.8vw,22px);border-radius:50%;background:rgba(41,181,232,.18);color:var(--blue);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;line-height:1}
 
 .pill{display:inline-block;padding:3px 10px;border-radius:4px;font-size:clamp(10px,.9vw,12px);font-weight:700;margin:3px}
 .pill.bl{background:rgba(41,181,232,.1);border:1px solid rgba(41,181,232,.25);color:var(--blue)}
@@ -111,361 +85,484 @@ html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;
 .pill.yl{background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.25);color:var(--yellow)}
 .pill.pu{background:rgba(129,140,248,.1);border:1px solid rgba(129,140,248,.25);color:var(--purple)}
 
-.chip{display:inline-block;padding:5px 16px;border-radius:999px;font-size:clamp(11px,1.1vw,13px);font-weight:600;
-  background:rgba(41,181,232,.12);border:1px solid rgba(41,181,232,.25);color:var(--blue)}
+.chip{display:inline-block;padding:5px 16px;border-radius:999px;font-size:clamp(11px,1.1vw,13px);font-weight:600;background:rgba(41,181,232,.12);border:1px solid rgba(41,181,232,.25);color:var(--blue)}
 .chip.pu{background:rgba(129,140,248,.12);border-color:rgba(129,140,248,.25);color:var(--purple)}
 .chip.gr{background:rgba(52,211,153,.12);border-color:rgba(52,211,153,.25);color:var(--green)}
 
-.kw{display:inline-block;background:rgba(41,181,232,.1);border:1px solid rgba(41,181,232,.3);
-  color:var(--blue);padding:2px 9px;border-radius:4px;
-  font-size:clamp(10px,.9vw,12px);font-weight:700;cursor:pointer;transition:all .15s}
+.kw{display:inline-block;background:rgba(41,181,232,.1);border:1px solid rgba(41,181,232,.3);color:var(--blue);padding:2px 9px;border-radius:4px;font-size:clamp(10px,.9vw,12px);font-weight:700;cursor:pointer;transition:all .15s}
 .kw:hover{background:rgba(41,181,232,.22)}
 .kw.pu{background:rgba(129,140,248,.1);border-color:rgba(129,140,248,.3);color:var(--purple)}
 .kw.pu:hover{background:rgba(129,140,248,.22)}
 .kw.gr{background:rgba(52,211,153,.1);border-color:rgba(52,211,153,.3);color:var(--green)}
 
-.back{position:absolute;top:clamp(14px,2vh,22px);right:clamp(14px,2vw,28px);
-  background:rgba(41,181,232,.1);border:1px solid rgba(41,181,232,.25);
-  color:var(--blue);padding:5px 14px;border-radius:6px;cursor:pointer;
-  font-size:clamp(10px,.9vw,12px);font-weight:600;transition:all .15s;z-index:10}
+.back{position:absolute;top:clamp(14px,2vh,22px);right:clamp(14px,2vw,28px);background:rgba(41,181,232,.1);border:1px solid rgba(41,181,232,.25);color:var(--blue);padding:5px 14px;border-radius:6px;cursor:pointer;font-size:clamp(10px,.9vw,12px);font-weight:600;transition:all .15s;z-index:10}
 .back:hover{background:rgba(41,181,232,.22)}
 
-/* 2-col grid */
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,3vw,36px);flex:1;min-height:0}
 @media(max-width:860px){.g2{grid-template-columns:1fr}}
-
-/* action grid */
 .ag{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(10px,1.5vw,16px);flex:1;min-height:0}
 @media(max-width:960px){.ag{grid-template-columns:repeat(2,1fr)}}
-
-/* agenda grid */
 .agg{display:grid;grid-template-columns:1fr 1fr;gap:clamp(10px,1.5vw,16px);flex:1;min-height:0}
 @media(max-width:760px){.agg{grid-template-columns:1fr}}
 
-/* SE TIP box */
-.se-tip{background:rgba(52,211,153,.06);border:1px solid rgba(52,211,153,.25);border-radius:10px;
-  padding:clamp(12px,1.5vh,18px) clamp(14px,1.8vw,20px);margin-top:clamp(10px,1.5vh,14px)}
+.se-tip{background:rgba(52,211,153,.06);border:1px solid rgba(52,211,153,.25);border-radius:10px;padding:clamp(12px,1.5vh,18px) clamp(14px,1.8vw,20px);margin-top:clamp(10px,1.5vh,14px)}
 .se-tip-t{font-size:clamp(10px,.9vw,12px);font-weight:700;color:var(--green);letter-spacing:.08em;margin-bottom:6px}
 .se-tip p{font-size:clamp(11px,1.1vw,13px);color:#a7f3d0;line-height:1.6}
 
-/* vid thumb */
 .vid-thumb{position:relative;cursor:pointer;border-radius:8px;overflow:hidden;background:#000;flex-shrink:0}
 .vid-thumb img{width:100%;display:block;transition:transform .3s}
 .vid-thumb:hover img{transform:scale(1.03)}
-.vid-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  background:rgba(0,0,0,.38);transition:background .2s}
+.vid-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.38);transition:background .2s}
 .vid-thumb:hover .vid-play{background:rgba(0,0,0,.22)}
-.vid-play-btn{width:clamp(40px,5vw,60px);height:clamp(40px,5vw,60px);border-radius:50%;
-  background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;
-  font-size:clamp(16px,2vw,24px);color:#08101e;padding-left:3px;box-shadow:0 4px 20px rgba(0,0,0,.4)}
-.vid-label{position:absolute;bottom:8px;left:10px;
-  background:rgba(8,16,30,.82);color:var(--blue);font-size:clamp(9px,.85vw,11px);
-  font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:.06em}
+.vid-play-btn{width:clamp(40px,5vw,60px);height:clamp(40px,5vw,60px);border-radius:50%;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;font-size:clamp(16px,2vw,24px);color:#08101e;padding-left:3px;box-shadow:0 4px 20px rgba(0,0,0,.4)}
+.vid-label{position:absolute;bottom:8px;left:10px;background:rgba(8,16,30,.82);color:var(--blue);font-size:clamp(9px,.85vw,11px);font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:.06em}
 
-.dsteps{counter-reset:d;list-style:none}
-.dsteps li{counter-increment:d;padding:clamp(6px,.8vh,9px) 0 clamp(6px,.8vh,9px) clamp(26px,3vw,34px);
-  position:relative;font-size:clamp(11px,1.1vw,13px);color:var(--muted);line-height:1.55;
-  border-bottom:1px solid rgba(255,255,255,.04)}
-.dsteps li:last-child{border-bottom:none}
-.dsteps li::before{content:counter(d);position:absolute;left:0;top:clamp(6px,.8vh,9px);
-  width:clamp(18px,1.8vw,22px);height:clamp(18px,1.8vw,22px);border-radius:50%;
-  background:rgba(41,181,232,.18);color:var(--blue);font-size:11px;font-weight:700;
-  display:flex;align-items:center;justify-content:center;line-height:1}
+.acc-wrap{display:flex;align-items:center;gap:clamp(16px,3vw,36px);background:var(--card);border:1px solid var(--border);border-radius:14px;padding:clamp(16px,2.5vh,28px) clamp(20px,3vw,36px);margin-bottom:clamp(12px,1.8vh,20px)}
+.acc-n{font-size:clamp(42px,7vw,72px);font-weight:900;line-height:1}
+.acc-l{font-size:clamp(11px,1vw,13px);color:var(--muted);margin-top:4px}
 </style>
 </head>
 <body>
 <div id="prog" style="width:0%"></div>
-
 <div id="deck">
 
-<!-- S01 TITLE -->
+<!-- ══ S01 TITLE ══ -->
 <div class="slide active" id="s01">
-  <div class="pad" style="flex:1;display:flex;flex-direction:column;justify-content:center;
-    background:radial-gradient(ellipse at 65% 40%,#0d2550 0%,var(--bg) 65%);position:relative">
-    <div style="position:absolute;right:clamp(32px,6vw,100px);top:50%;transform:translateY(-50%);
-      font-size:clamp(100px,18vw,240px);font-weight:900;color:rgba(41,181,232,.04);line-height:1;pointer-events:none">26</div>
+  <div class="pad" style="flex:1;display:flex;flex-direction:column;justify-content:center;background:radial-gradient(ellipse at 65% 40%,#0d2550 0%,var(--bg) 65%);position:relative">
+    <div style="position:absolute;right:clamp(32px,6vw,100px);top:50%;transform:translateY(-50%);font-size:clamp(100px,18vw,240px);font-weight:900;color:rgba(41,181,232,.04);line-height:1;pointer-events:none">26</div>
     <div style="max-width:min(680px,75%)">
       <div class="eyebrow">Snowflake Summit 2026 &middot; Day 2 &middot; Platform Keynote</div>
-      <div class="h1" style="margin-bottom:.2em">Platform Keynote<br>SE Summary</div>
-      <div style="font-size:clamp(14px,1.8vw,22px);color:var(--muted);margin-bottom:clamp(24px,4vh,44px)">
-        SE &middot; Solutions Engineer &middot; 2026&#45;06</div>
+      <div class="h1" style="margin-bottom:.2em">플랫폼<br>키노트 요약</div>
+      <div style="font-size:clamp(14px,1.8vw,22px);color:var(--muted);margin-bottom:clamp(24px,4vh,44px)">SE 관점 한국어 요약 &middot; 2026년 6월</div>
       <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:clamp(20px,3vh,36px)">
-        <span class="chip">4 Acts</span>
-        <span class="chip">30+ Announcements</span>
-        <span class="chip gr">SE Tips</span>
-        <span class="chip pu">YouTube</span>
+        <span class="chip">4막 구조</span>
+        <span class="chip">30+ 제품 발표</span>
+        <span class="chip">90분</span>
+        <span class="chip gr">SE Tips 포함</span>
+        <span class="chip pu">YouTube 원본 영상</span>
       </div>
       <div style="font-size:clamp(11px,1.1vw,13px);color:var(--muted);line-height:1.7">
-        by Myeongsu Son (msson) &middot; Snowflake Solutions Engineer<br>
-        CoCo &middot; CoWork &middot; Cortex Agent &middot; Governance
+        발표자: Benoit Dageville &middot; Christian Kleinerman &middot; Dash Desai<br>
+        게스트: Thomson Reuters &middot; Under Armour &middot; Samsung Electronics<br>
+        정리: 손명수 (msson) &middot; Snowflake Solutions Engineer
       </div>
       <div style="margin-top:clamp(20px,3vh,32px);font-size:clamp(10px,.9vw,12px);color:rgba(41,181,232,.55)">
-        &larr; &rarr; or buttons to navigate &middot; Click blue keywords for details
+        &larr; &rarr; 키보드 방향키 또는 하단 버튼으로 이동 &middot; 파란 키워드 클릭 시 해당 상세 슬라이드로 바로 이동
       </div>
     </div>
   </div>
 </div>
 
-<!-- S02 AGENDA -->
+<!-- ══ S02 AGENDA ══ -->
 <div class="slide" id="s02">
   <div class="pad" style="flex:1;display:flex;flex-direction:column">
     <div class="eyebrow">AGENDA</div>
-    <div class="h2">Keynote Overview</div>
-    <div class="sub">Click cards to jump to each section</div>
+    <div class="h2">오늘의 주요 내용</div>
+    <div class="sub">카드를 클릭하면 해당 섹션으로 바로 이동합니다</div>
     <div class="agg">
       <div class="card" style="cursor:pointer;transition:all .2s" onclick="goTo('s03')">
+        <div style="font-size:clamp(22px,3vw,32px);margin-bottom:8px">&#x1F3AD;</div>
+        <div style="font-size:clamp(10px,.9vw,11px);font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px">리브랜딩</div>
+        <div style="font-size:clamp(14px,1.6vw,18px);font-weight:700;margin-bottom:6px">CoCo &amp; CoWork 탄생</div>
+        <div style="font-size:clamp(11px,1.1vw,13px);color:var(--muted);line-height:1.5">Cortex Code &rarr; CoCo<br>Snowflake Intelligence &rarr; CoWork</div>
+        <div style="margin-top:10px;font-size:clamp(10px,.9vw,12px);color:var(--blue);font-weight:700">자세히 보기 &rarr;</div>
+      </div>
+      <div class="card" style="cursor:pointer;transition:all .2s" onclick="goTo('s04')">
         <div style="font-size:clamp(22px,3vw,32px);margin-bottom:8px">&#x1F4BB;</div>
         <div style="font-size:clamp(10px,.9vw,11px);font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px">ACT 1</div>
-        <div style="font-size:clamp(14px,1.6vw,18px);font-weight:700;margin-bottom:6px">CoCo &amp; Ease of Use</div>
+        <div style="font-size:clamp(14px,1.6vw,18px);font-weight:700;margin-bottom:6px">사용 편의성 &middot; CoCo</div>
         <div style="font-size:clamp(11px,1.1vw,13px);color:var(--muted);line-height:1.5">CoCo Desktop GA &middot; Cloud Agents<br>Data Stream &middot; App Runtime</div>
-        <div style="margin-top:10px;font-size:clamp(10px,.9vw,12px);color:var(--blue);font-weight:700">View &rarr;</div>
-      </div>
-      <div class="card" style="cursor:pointer;transition:all .2s" onclick="goTo('s05')">
-        <div style="font-size:clamp(22px,3vw,32px);margin-bottom:8px">&#x1F6E1;&#xFE0F;</div>
-        <div style="font-size:clamp(10px,.9vw,11px);font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px">ACT 2</div>
-        <div style="font-size:clamp(14px,1.6vw,18px);font-weight:700;margin-bottom:6px">Trust &amp; Governance</div>
-        <div style="font-size:clamp(11px,1.1vw,13px);color:var(--muted);line-height:1.5">Intent-driven Gov &middot; Agent Identity<br>Data Movement Policy &middot; 40x Compiler</div>
-        <div style="margin-top:10px;font-size:clamp(10px,.9vw,12px);color:var(--blue);font-weight:700">View &rarr;</div>
+        <div style="margin-top:10px;font-size:clamp(10px,.9vw,12px);color:var(--blue);font-weight:700">자세히 보기 &rarr;</div>
       </div>
       <div class="card" style="cursor:pointer;transition:all .2s" onclick="goTo('s07')">
+        <div style="font-size:clamp(22px,3vw,32px);margin-bottom:8px">&#x1F6E1;&#xFE0F;</div>
+        <div style="font-size:clamp(10px,.9vw,11px);font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px">ACT 2</div>
+        <div style="font-size:clamp(14px,1.6vw,18px);font-weight:700;margin-bottom:6px">거버넌스 &amp; 신뢰</div>
+        <div style="font-size:clamp(11px,1.1vw,13px);color:var(--muted);line-height:1.5">Intent-driven Gov &middot; Agent Identity<br>Data Movement &middot; 40x Compiler</div>
+        <div style="margin-top:10px;font-size:clamp(10px,.9vw,12px);color:var(--blue);font-weight:700">자세히 보기 &rarr;</div>
+      </div>
+      <div class="card" style="cursor:pointer;transition:all .2s" onclick="goTo('s11')">
         <div style="font-size:clamp(22px,3vw,32px);margin-bottom:8px">&#x1F310;</div>
         <div style="font-size:clamp(10px,.9vw,11px);font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px">ACT 3</div>
-        <div style="font-size:clamp(14px,1.6vw,18px);font-weight:700;margin-bottom:6px">Open &amp; Interoperable</div>
-        <div style="font-size:clamp(11px,1.1vw,13px);color:var(--muted);line-height:1.5">Iceberg V3 GA &middot; SAP Zero-copy<br>Open Sharing &middot; Multi-party Collab</div>
-        <div style="margin-top:10px;font-size:clamp(10px,.9vw,12px);color:var(--blue);font-weight:700">View &rarr;</div>
+        <div style="font-size:clamp(14px,1.6vw,18px);font-weight:700;margin-bottom:6px">개방성 &amp; 상호운용</div>
+        <div style="font-size:clamp(11px,1.1vw,13px);color:var(--muted);line-height:1.5">Iceberg V3 GA &middot; SAP Zero-copy<br>Open Sharing &middot; Multi-party</div>
+        <div style="margin-top:10px;font-size:clamp(10px,.9vw,12px);color:var(--blue);font-weight:700">자세히 보기 &rarr;</div>
       </div>
-      <div class="card pu" style="cursor:pointer;transition:all .2s" onclick="goTo('s09')">
+      <div class="card pu" style="cursor:pointer;transition:all .2s" onclick="goTo('s15')">
         <div style="font-size:clamp(22px,3vw,32px);margin-bottom:8px">&#x1F916;</div>
         <div style="font-size:clamp(10px,.9vw,11px);font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px">ACT 4</div>
-        <div style="font-size:clamp(14px,1.6vw,18px);font-weight:700;margin-bottom:6px">CoWork for Everyone</div>
+        <div style="font-size:clamp(14px,1.6vw,18px);font-weight:700;margin-bottom:6px">모두를 위한 CoWork</div>
         <div style="font-size:clamp(11px,1.1vw,13px);color:var(--muted);line-height:1.5">Personal Work Engine &middot; Cortex Sense<br>Artifacts &middot; Natoma MCP</div>
-        <div style="margin-top:10px;font-size:clamp(10px,.9vw,12px);color:var(--purple);font-weight:700">View &rarr;</div>
+        <div style="margin-top:10px;font-size:clamp(10px,.9vw,12px);color:var(--purple);font-weight:700">자세히 보기 &rarr;</div>
+      </div>
+      <div class="card" style="cursor:pointer;transition:all .2s" onclick="goTo('s20')">
+        <div style="font-size:clamp(22px,3vw,32px);margin-bottom:8px">&#x1F3C6;</div>
+        <div style="font-size:clamp(10px,.9vw,11px);font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px">고객 사례</div>
+        <div style="font-size:clamp(14px,1.6vw,18px);font-weight:700;margin-bottom:6px">Thomson &middot; UA &middot; Samsung</div>
+        <div style="font-size:clamp(11px,1.1vw,13px);color:var(--muted);line-height:1.5">실제 운영 사례 3건<br>+ SE 활용 전략</div>
+        <div style="margin-top:10px;font-size:clamp(10px,.9vw,12px);color:var(--green);font-weight:700">자세히 보기 &rarr;</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- S03 ACT1: CoCo -->
+<!-- ══ S03 리브랜딩 ══ -->
 <div class="slide" id="s03">
   <div class="pad" style="flex:1;display:flex;flex-direction:column">
-    <button class="back" onclick="goTo('s02')">&#8592; Agenda</button>
-    <div class="eyebrow">ACT 1 &middot; EASE OF USE</div>
-    <div class="h2">Snowflake CoCo &mdash; AI Coding Agent</div>
+    <button class="back" onclick="goTo('s02')">← 목차로</button>
+    <div class="eyebrow">MAJOR ANNOUNCEMENT</div>
+    <div class="h2">공식 제품명 변경</div>
+    <div class="divline"></div>
+    <div class="g2">
+      <div>
+        <ul class="blist">
+          <li><strong>Cortex Code &rarr; CoCo</strong>: 개발자를 위한 AI 코딩 에이전트</li>
+          <li><strong>Snowflake Intelligence &rarr; CoWork</strong>: 모든 직원의 개인 AI 업무 엔진</li>
+          <li>단순 이름 변경이 아닌 <strong>포지셔닝 재정의</strong></li>
+          <li>Christian Kleinerman 선언 후 관중 환호 — Summit 최대 반응</li>
+          <li>두 제품 모두 기능 확장과 함께 리브랜딩</li>
+          <li>CoWork: 모든 직원이 사용하는 "개인 AI 업무 엔진"</li>
+          <li>CoCo: 개발자의 "AI 코딩 에이전트"</li>
+        </ul>
+        <div class="quote">
+          "Snowflake Intelligence의 범위는 우리가 시작했을 때보다 훨씬 넓어졌습니다. 업무 방식 자체를 바꾸고 있습니다."
+          <cite>— Christian Kleinerman, EVP of Product</cite>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:clamp(10px,1.8vh,16px)">
+        <div class="ibox">
+          <div class="ibox-t">리브랜딩 요약</div>
+          <div style="display:flex;flex-direction:column;gap:12px;margin-top:8px">
+            <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px 18px;text-align:center">
+              <div style="font-size:11px;color:var(--muted);margin-bottom:4px">Before</div>
+              <div style="font-size:15px;color:var(--muted);text-decoration:line-through">Cortex Code</div>
+              <div style="font-size:18px;font-weight:800;color:var(--blue);margin-top:4px">CoCo</div>
+            </div>
+            <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px 18px;text-align:center">
+              <div style="font-size:11px;color:var(--muted);margin-bottom:4px">Before</div>
+              <div style="font-size:15px;color:var(--muted);text-decoration:line-through">Snowflake Intelligence</div>
+              <div style="font-size:18px;font-weight:800;color:var(--purple);margin-top:4px">CoWork</div>
+            </div>
+          </div>
+        </div>
+        <div class="se-tip">
+          <div class="se-tip-t">SE TIP</div>
+          <p>고객 미팅 시 "Cortex Code"라고 부르면 혼란을 줄 수 있습니다. 이제부터 CoCo/CoWork로 통일. 리브랜딩 이유를 설명할 때: "기능이 코딩을 넘어 전체 업무로 확장되었기 때문"이라고 포지셔닝하세요.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ S04 ACT1 CoCo ══ -->
+<div class="slide" id="s04">
+  <div class="pad" style="flex:1;display:flex;flex-direction:column">
+    <button class="back" onclick="goTo('s02')">← 목차로</button>
+    <div class="eyebrow">ACT 1 &middot; 사용 편의성</div>
+    <div class="h2">Snowflake CoCo — AI 코딩 에이전트</div>
     <div class="divline"></div>
     <div class="g2">
       <div style="display:flex;flex-direction:column;gap:clamp(10px,1.8vh,18px)">
         <div class="stat-row">
-          <div class="stat-card"><div class="stat-n">GA</div><div class="stat-l">CoCo Desktop</div></div>
-          <div class="stat-card"><div class="stat-n pu">5&times;</div><div class="stat-l">Spark&rarr;SF</div></div>
-          <div class="stat-card"><div class="stat-n gr">3</div><div class="stat-l">Desktop/Snowsight/CLI</div></div>
+          <div class="stat-card"><div class="stat-n">GA</div><div class="stat-l">CoCo Desktop 출시</div></div>
+          <div class="stat-card"><div class="stat-n pu">5&times;</div><div class="stat-l">Spark&rarr;SF 성능</div></div>
+          <div class="stat-card"><div class="stat-n">3</div><div class="stat-l">Desktop/Snowsight/CLI</div></div>
         </div>
         <ul class="blist">
-          <li><strong>CoCo Desktop GA</strong>: Plan &rarr; Build &rarr; Deploy in one flow</li>
-          <li><strong>Cloud Agents (nearly GA)</strong>: Snowsight/CLI sandbox, scheduled execution, Async API</li>
-          <li><strong>Snap and Ask</strong>: Screenshot any area, ask questions in natural language</li>
-          <li><strong>Snowflake Data Stream (PP)</strong>: Kafka Wire compatible, fully managed, sub-ms latency</li>
-          <li><strong>AIM Migration</strong>: Run Teradata SQL directly on Snowflake, 5x Spark RDD perf</li>
-          <li><strong>Snowflake App Runtime (PP)</strong>: Host Node.js/React apps natively in Snowflake</li>
+          <li><strong>CoCo Desktop GA</strong>: Plan &rarr; Build &rarr; Deploy 하나의 흐름. CLI 수준 파워를 UI에서</li>
+          <li><strong>Cloud Agents (nearly GA)</strong>: Snowsight&middot;CLI 샌드박스 추가, 예약 실행, Async API</li>
+          <li><span class="kw" onclick="goTo('s05')">Snap and Ask &rarr;</span> — 화면 캡처 후 자연어로 질문, 시각적 컨텍스트 완전 이해</li>
+          <li><strong>Snowflake Data Stream (PP)</strong>: Kafka Wire 호환, 완전 관리형, 밀리초 미만 지연</li>
+          <li><strong>AIM 마이그레이션</strong>: Teradata SQL을 Snowflake에서 그대로 실행, Spark RDD 5배 성능</li>
+          <li><span class="kw" onclick="goTo('s06')">App Runtime &rarr;</span> Node.js/React 앱을 Snowflake 내에서 호스팅</li>
         </ul>
         <div style="display:flex;gap:8px;flex-wrap:wrap">
-          <span class="kw" onclick="goTo('s04')">Data Stream Details &rarr;</span>
-          <span class="kw pu" onclick="goTo('s09')">CoWork &rarr;</span>
+          <span class="kw" onclick="goTo('s05')">Snap and Ask &rarr;</span>
+          <span class="kw" onclick="goTo('s06')">App Runtime &rarr;</span>
+          <span class="kw pu" onclick="goTo('s15')">CoWork 보기 &rarr;</span>
         </div>
       </div>
       <div style="display:flex;flex-direction:column;gap:clamp(10px,1.8vh,16px)">
         <div class="ibox">
-          <div class="ibox-t">Demo 1: Snow Music (16:33~)</div>
+          <div class="ibox-t">Demo 1: Snow Music (16:33~, 약 6분)</div>
           <div class="vid-thumb" data-start="993">
             <img src="https://snowflake-summit27-platformkeynote-en.netlify.app/screenshots/platform/03_data_stream.jpg" alt="CoCo Desktop Demo">
             <div class="vid-play"><div class="vid-play-btn">&#9654;</div></div>
-            <div class="vid-label">&#9654; 16:33~ Play</div>
+            <div class="vid-label">&#9654; 16:33~ 재생</div>
           </div>
           <ol class="dsteps" style="margin-top:10px">
-            <li>CoCo diagnoses pipeline failure in natural language (missing device_type column)</li>
-            <li>Data sources: Data Stream + Iceberg + Salesforce Zero-copy</li>
-            <li>Destructive ops require user approval &mdash; AI never acts alone</li>
+            <li>CoCo Desktop이 스트리밍 앱 파이프라인 장애를 자연어로 진단</li>
+            <li>데이터 소스: Data Stream + Iceberg + Salesforce Zero-copy</li>
+            <li>파괴적 명령은 사용자 승인 필수 — AI가 단독으로 행동하지 않음</li>
+            <li>인게이지먼트 차트 캡처 후 "왜 이게 떨어졌나요?" &rarr; 상세 답변</li>
           </ol>
         </div>
         <div class="se-tip">
           <div class="se-tip-t">SE TIP</div>
-          <p>CoCo Desktop demo is the most effective first touchpoint for customers. Show the "natural language &rarr; pipeline fix &rarr; deploy" flow. Emphasize that destructive commands require human approval &mdash; addresses the #1 AI safety concern.</p>
+          <p>CoCo Desktop 데모는 고객 첫 미팅에서 가장 효과적인 터치포인트. "자연어 &rarr; 파이프라인 진단 &rarr; 수정 &rarr; 배포" 흐름을 보여주세요. 파괴적 작업에 승인이 필요하다는 점이 AI 안전성 우려 #1을 해소합니다.</p>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- S04 Data Stream -->
-<div class="slide" id="s04">
-  <div class="pad" style="flex:1;display:flex;flex-direction:column">
-    <button class="back" onclick="goTo('s03')">&#8592; CoCo</button>
-    <div class="eyebrow">ACT 1 &middot; STREAMING</div>
-    <div class="h2">Snowflake Data Stream</div>
-    <div class="divline"></div>
-    <div class="g2">
-      <div>
-        <ul class="blist">
-          <li><strong>Kafka Wire Protocol compatible</strong> &mdash; drop-in replacement</li>
-          <li>Fully managed by Snowflake, no cluster ops needed</li>
-          <li><strong>Sub-millisecond latency</strong> for real-time use cases</li>
-          <li>Direct integration with Iceberg tables &amp; Snowflake tables</li>
-          <li>Status: <strong>Private Preview</strong> (expected soon)</li>
-          <li>Significant cost reduction vs. self-managed Kafka</li>
-        </ul>
-        <div class="se-tip" style="margin-top:auto">
-          <div class="se-tip-t">SE TIP</div>
-          <p>For customers running Kafka/Confluent: position Data Stream as operational simplification + cost savings. Key differentiator is Zero-copy to Iceberg tables &mdash; no connector maintenance. Calculate TCO savings vs current Kafka + Kafka Connect setup.</p>
-        </div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:clamp(10px,1.8vh,16px)">
-        <svg viewBox="0 0 480 180" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-height:clamp(130px,22vh,180px);background:#0d1b2a;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,.4)">
-          <text x="240" y="18" text-anchor="middle" font-size="11" fill="#29B5E8" font-family="sans-serif" letter-spacing="1">Kafka-Compatible, Native to Snowflake</text>
-          <rect x="14" y="50" width="90" height="70" rx="6" fill="none" stroke="#29B5E8" stroke-width="1.5" stroke-dasharray="4,3"/>
-          <text x="59" y="74" text-anchor="middle" font-size="10" fill="#fff" font-family="sans-serif" font-weight="700">EVENT</text>
-          <text x="59" y="90" text-anchor="middle" font-size="9" fill="#aac" font-family="sans-serif">App / IoT / Web</text>
-          <line x1="104" y1="85" x2="148" y2="85" stroke="#29B5E8" stroke-width="1.5" marker-end="url(#arr)"/>
-          <circle cx="204" cy="85" r="42" fill="#b8eeff" opacity=".15" stroke="#29B5E8" stroke-width="1.5"/>
-          <text x="204" y="82" text-anchor="middle" font-size="11" fill="#0d1b2a" font-family="sans-serif" font-weight="800">DATA</text>
-          <text x="204" y="96" text-anchor="middle" font-size="11" fill="#0d1b2a" font-family="sans-serif" font-weight="800">STREAM</text>
-          <line x1="246" y1="70" x2="302" y2="55" stroke="#29B5E8" stroke-width="1.5" marker-end="url(#arr)"/>
-          <line x1="246" y1="100" x2="302" y2="115" stroke="#29B5E8" stroke-width="1.5" marker-end="url(#arr)"/>
-          <rect x="304" y="38" width="110" height="34" rx="5" fill="rgba(41,181,232,.12)" stroke="#29B5E8" stroke-width="1"/>
-          <text x="359" y="52" text-anchor="middle" font-size="9.5" fill="#29B5E8" font-family="sans-serif" font-weight="700">ICEBERG</text>
-          <text x="359" y="65" text-anchor="middle" font-size="9.5" fill="#29B5E8" font-family="sans-serif" font-weight="700">TABLES</text>
-          <rect x="304" y="100" width="110" height="34" rx="5" fill="rgba(41,181,232,.12)" stroke="#29B5E8" stroke-width="1"/>
-          <text x="359" y="114" text-anchor="middle" font-size="9.5" fill="#29B5E8" font-family="sans-serif" font-weight="700">SNOWFLAKE</text>
-          <text x="359" y="127" text-anchor="middle" font-size="9.5" fill="#29B5E8" font-family="sans-serif" font-weight="700">TABLES</text>
-          <defs><marker id="arr" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7z" fill="#29B5E8"/></marker></defs>
-        </svg>
-        <div class="ibox">
-          <div class="ibox-t">Key Value Proposition</div>
-          <ul class="blist">
-            <li>No Kafka cluster management</li>
-            <li>Native Snowflake security &amp; governance</li>
-            <li>Direct Iceberg table integration</li>
-            <li>Kafka client libraries just work</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- S05 ACT2: Governance -->
+<!-- ══ S05 Snap and Ask ══ -->
 <div class="slide" id="s05">
   <div class="pad" style="flex:1;display:flex;flex-direction:column">
-    <button class="back" onclick="goTo('s02')">&#8592; Agenda</button>
-    <div class="eyebrow">ACT 2 &middot; TRUST</div>
-    <div class="h2">Governance &amp; Security</div>
+    <button class="back" onclick="goTo('s04')">← CoCo로</button>
+    <div class="eyebrow">ACT 1 &middot; CoCo 기능</div>
+    <div class="h2">Snap and Ask</div>
+    <div class="divline"></div>
+    <div class="g2">
+      <ul class="blist" style="flex:1">
+        <li>화면의 <strong>어느 영역이든</strong> 캡처하여 CoCo에게 자연어로 질문</li>
+        <li>차트, 대시보드, 오류 메시지, 코드 스크린샷 등 모두 지원</li>
+        <li>CoCo가 <strong>시각적 컨텍스트를 완전히 이해</strong>하고 분석 결과 제공</li>
+        <li>"이 차트에서 왜 인게이지먼트가 떨어졌나요?" — 자연어 질문</li>
+        <li>데이터 소스를 자동 추적하여 <strong>원인 분석까지</strong> 수행</li>
+        <li>개발자&middot;분석가 모두 사용 가능, 코드 없이도 인사이트 도출</li>
+      </ul>
+      <div style="display:flex;flex-direction:column;gap:clamp(10px,1.8vh,16px)">
+        <div class="ibox">
+          <div class="ibox-t">사용 시나리오</div>
+          <ol class="dsteps">
+            <li>Snowsight 대시보드에서 이상한 차트 발견</li>
+            <li>Snap and Ask로 해당 영역 캡처</li>
+            <li>"왜 지난주에 비해 30% 하락했나요?" 질문</li>
+            <li>CoCo가 관련 테이블&middot;파이프라인을 조사해 원인 제시</li>
+          </ol>
+        </div>
+        <div class="se-tip">
+          <div class="se-tip-t">SE TIP</div>
+          <p>비개발자 고객(분석가, 경영진)에게 특히 어필되는 기능. "코드 모르셔도 됩니다, 화면 캡처만 하세요"로 포지셔닝. 기존 BI 도구에서 발견한 이상 징후를 즉시 원인 분석할 수 있는 워크플로우를 보여주세요.</p>
+        </div>
+        <span class="kw" onclick="goTo('s04')">← CoCo 전체 기능</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ S06 App Runtime ══ -->
+<div class="slide" id="s06">
+  <div class="pad" style="flex:1;display:flex;flex-direction:column">
+    <button class="back" onclick="goTo('s04')">← CoCo로</button>
+    <div class="eyebrow">ACT 1 &middot; App Development</div>
+    <div class="h2">Snowflake App Runtime &amp; Streamlit</div>
     <div class="divline"></div>
     <div class="g2">
       <div>
-        <ul class="blist">
-          <li><strong>Intent-driven Governance</strong>: "Protect all PII" &rarr; auto-classify &amp; create policies</li>
-          <li><span class="kw" onclick="goTo('s06')">Agent Identity &rarr;</span> &mdash; detect agent context, apply masking per agent type</li>
-          <li><strong>Data Movement Policies</strong>: Block tagged data from external export at system level</li>
-          <li><strong>Multi-party Approvals (PP)</strong>: 2-person approval for high-risk ops</li>
-          <li><strong>Horizon Context (NEW)</strong>: Auto-provide semantic signals to agents</li>
-          <li><strong>Interactive Compiler</strong>: 40x faster compilation &rarr; 3-4x workload speedup</li>
-          <li><strong>Adaptive Compute GA</strong>: ~2x performance vs Gen 1</li>
-          <li><strong>AI Cost Governance</strong>: AI usage in budgets, per-user quotas</li>
+        <div style="font-size:14px;font-weight:700;color:var(--blue);margin-bottom:10px">Snowflake App Runtime (Public Preview)</div>
+        <ul class="blist" style="margin-bottom:20px">
+          <li>Snowflake 내에서 <strong>Node.js / React 앱</strong> 직접 호스팅</li>
+          <li>단일 <code style="background:rgba(41,181,232,.1);padding:2px 6px;border-radius:4px;font-size:12px">snow app deploy</code> 명령으로 배포 완료</li>
+          <li>데이터와 앱이 동일 플랫폼에서 실행 — 지연 없음</li>
+          <li>Retool, Superblocks 등 외부 앱 빌더와도 통합</li>
         </ul>
-        <div class="se-tip">
-          <div class="se-tip-t">SE TIP</div>
-          <p>Governance is THE enabler for AI adoption. When customers hesitate on CoWork/CoCo deployment, lead with governance story: "You can enable AI for everyone BECAUSE controls are built-in." Intent-driven governance + Agent Identity + DMP = complete AI guardrails.</p>
-        </div>
+        <div style="font-size:14px;font-weight:700;color:var(--purple);margin-bottom:10px">Streamlit in Snowflake (GA)</div>
+        <ul class="blist">
+          <li>워크스페이스, Git 통합, 컨테이너 실행 환경</li>
+          <li>월 활성 개발자 <strong>1.7M명</strong> — Snowflake 역대 최다</li>
+          <li>Code Bundles (PP): Python 파일을 래퍼 없이 직접 실행</li>
+        </ul>
       </div>
       <div style="display:flex;flex-direction:column;gap:clamp(10px,1.8vh,16px)">
         <div class="ibox">
-          <div class="ibox-t">Demo 2: Governance (38:43~)</div>
+          <div class="ibox-t">개발자 생태계 확장</div>
+          <ul class="blist">
+            <li>Excel, VS Code, GitHub Marketplace에서도 CoCo 접근 가능</li>
+            <li>Cortex Function Studio (PP): 맞춤 AI 함수 빌드&middot;평가&middot;배포</li>
+            <li>Agentic Search (PP): 비정형 데이터 &rarr; 구조화 &rarr; SQL 응답</li>
+          </ul>
+        </div>
+        <div class="se-tip">
+          <div class="se-tip-t">SE TIP</div>
+          <p>App Runtime은 Streamlit의 한계(복잡한 UI, 멀티페이지)를 느끼는 고객에게 제안. "Streamlit으로 시작, App Runtime으로 확장" 로드맵을 제시하세요. 1.7M 개발자 수치는 생태계 규모 어필에 효과적.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ S07 ACT2 거버넌스 ══ -->
+<div class="slide" id="s07">
+  <div class="pad" style="flex:1;display:flex;flex-direction:column">
+    <button class="back" onclick="goTo('s02')">← 목차로</button>
+    <div class="eyebrow">ACT 2 &middot; 신뢰</div>
+    <div class="h2">Governance &amp; Security — Trust as Accelerant</div>
+    <div class="divline"></div>
+    <div class="g2">
+      <ul class="blist">
+        <li><strong>Intent-driven Governance</strong>: "모든 PII를 보호해줘" &rarr; 자동 분류&middot;정책 생성 (CoCo 기반)</li>
+        <li><span class="kw" onclick="goTo('s08')">Agent Identity &rarr;</span> — 에이전트 실행 컨텍스트 감지, 마스킹 정책에서 참조</li>
+        <li><span class="kw" onclick="goTo('s09')">Data Movement Policy &rarr;</span>: 태그된 데이터의 외부 전송&middot;다운로드 시스템 레벨 차단</li>
+        <li><strong>Multi-party Approvals (PP)</strong>: 고위험 작업은 2인 승인 필수</li>
+        <li><strong>Horizon Context (NEW)</strong>: 에이전트에 시맨틱 신호 자동 제공</li>
+        <li><span class="kw" onclick="goTo('s10')">Interactive Compiler &rarr;</span>: 40배 빠른 컴파일 &rarr; 3~4배 워크로드 가속</li>
+        <li><strong>Adaptive Compute GA</strong>: 1세대 대비 약 2배 성능</li>
+        <li><strong>AI 비용 거버넌스</strong>: AI 사용량을 Budget에 통합, 사용자별 쿼터</li>
+      </ul>
+      <div style="display:flex;flex-direction:column;gap:clamp(10px,1.8vh,16px)">
+        <div class="ibox">
+          <div class="ibox-t">Demo 2: 거버넌스 (38:43~, 약 5분)</div>
           <div class="vid-thumb" data-start="2323">
             <img src="https://snowflake-summit27-platformkeynote-en.netlify.app/screenshots/platform/05_caitlin_thomson_reuters.jpg" alt="Governance Demo">
             <div class="vid-play"><div class="vid-play-btn">&#9654;</div></div>
-            <div class="vid-label">&#9654; 38:43~ Play</div>
+            <div class="vid-label">&#9654; 38:43~ 재생</div>
           </div>
           <ol class="dsteps" style="margin-top:10px">
-            <li>CoWork requests VIP contacts &rarr; masking policy blocks values</li>
-            <li>Export to external stage &rarr; Data Movement Policy blocks (live failure)</li>
-            <li>Trust Center: Unified view of AI guardrails + data security + DMP violations</li>
+            <li>CoWork로 VIP 연락처 요청 &rarr; 마스킹 정책 실행, 값 숨겨짐</li>
+            <li>외부 스테이지로 데이터 내보내기 &rarr; Data Movement Policy 차단</li>
+            <li>Trust Center: AI 가드레일&middot;데이터 보안&middot;DMP 위반 통합 뷰</li>
           </ol>
         </div>
-        <div class="quote">
-          "Governance is an enabler, not a constraint."
-          <cite>&mdash; Caitlin Hugerty, Thomson Reuters VP of AI &amp; Data</cite>
+        <div class="se-tip">
+          <div class="se-tip-t">SE TIP</div>
+          <p>거버넌스는 AI 도입의 핵심 가속기. 고객이 CoWork/CoCo 배포를 망설일 때, 거버넌스 스토리로 리드하세요: "컨트롤이 내장되어 있으니 안심하고 AI를 전사에 배포할 수 있습니다." Intent-driven + Agent Identity + DMP = 완전한 AI 가드레일.</p>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- S06 Agent Identity -->
-<div class="slide" id="s06">
+<!-- ══ S08 Agent Identity ══ -->
+<div class="slide" id="s08">
   <div class="pad" style="flex:1;display:flex;flex-direction:column">
-    <button class="back" onclick="goTo('s05')">&#8592; Governance</button>
-    <div class="eyebrow">ACT 2 &middot; DETAIL</div>
+    <button class="back" onclick="goTo('s07')">← 거버넌스로</button>
+    <div class="eyebrow">ACT 2 &middot; 상세</div>
     <div class="h2">Agent Identity &amp; Horizon Context</div>
     <div class="divline"></div>
     <div class="g2">
       <div>
-        <div style="font-size:clamp(12px,1.2vw,14px);font-weight:700;color:var(--blue);margin-bottom:clamp(8px,1.2vh,12px)">Agent Identity</div>
-        <ul class="blist" style="margin-bottom:clamp(16px,2.5vh,24px)">
-          <li>New context function to detect agent execution context</li>
-          <li>Reference in masking &amp; row access policies</li>
-          <li>Different data access per agent type</li>
-          <li>"Traditional security models were designed for human users. Agents are different."</li>
+        <div style="font-size:14px;font-weight:700;color:var(--blue);margin-bottom:10px">Agent Identity</div>
+        <ul class="blist" style="margin-bottom:20px">
+          <li>에이전트 실행 컨텍스트를 감지하는 <strong>새로운 컨텍스트 함수</strong></li>
+          <li>마스킹 정책 및 행 접근 정책에서 직접 참조 가능</li>
+          <li>에이전트 유형별로 다른 <strong>데이터 접근 권한</strong> 설정</li>
+          <li>"전통적 보안 모델은 인간 사용자를 위해 설계. 에이전트는 다릅니다."</li>
         </ul>
-        <div style="font-size:clamp(12px,1.2vw,14px);font-weight:700;color:var(--purple);margin-bottom:clamp(8px,1.2vh,12px)">Horizon Context (NEW)</div>
+        <div style="font-size:14px;font-weight:700;color:var(--purple);margin-bottom:10px">Horizon Context (NEW)</div>
         <ul class="blist">
-          <li>Auto-provide semantic signals to CoCo/CoWork/Cortex agents</li>
-          <li>Integrates Semantic Views + external metadata connectors</li>
-          <li>Agents understand business context &rarr; more accurate answers</li>
-          <li><span class="kw pu" onclick="goTo('s10')">Cortex Sense &rarr;</span> accuracy 24% &rarr; 83%</li>
+          <li>CoCo&middot;CoWork&middot;Cortex 에이전트에 <strong>시맨틱 신호를 자동 제공</strong></li>
+          <li>Semantic Views와 외부 메타데이터 커넥터 통합</li>
+          <li>에이전트가 비즈니스 컨텍스트를 이해하고 더 정확한 답변 제공</li>
+          <li><span class="kw pu" onclick="goTo('s17')">Cortex Sense 연계 &rarr;</span> 정확도 24% &rarr; 83%</li>
         </ul>
       </div>
       <div style="display:flex;flex-direction:column;gap:clamp(10px,1.8vh,16px)">
         <div class="ibox" style="border-color:rgba(129,140,248,.25)">
           <div class="ibox-t pu">Horizon AI Guardrails</div>
           <ul class="blist">
-            <li>Protect CoCo/CoWork from jailbreak attempts at runtime</li>
-            <li>Defend against prompt injection (known + zero-day)</li>
+            <li>CoCo/CoWork를 <strong>탈옥 시도</strong>로부터 런타임에서 보호</li>
+            <li><strong>프롬프트 인젝션</strong> 공격 방어 (기존 + 제로데이)</li>
           </ul>
         </div>
         <div class="se-tip">
           <div class="se-tip-t">SE TIP</div>
-          <p>Agent Identity is a game-changer for customers building Cortex Agents. Show how the same table can expose different columns to different agents via masking policies. This addresses enterprise security teams' concerns about "AI accessing everything."</p>
+          <p>Agent Identity는 Cortex Agent를 만드는 고객에게 게임 체인저. 같은 테이블에서 에이전트 유형별로 다른 컬럼을 노출하는 마스킹 정책 데모를 보여주세요. 엔터프라이즈 보안팀의 "AI가 모든 데이터에 접근하면 어쩌나" 우려를 해소합니다.</p>
         </div>
-        <span class="kw" onclick="goTo('s05')">&#8592; Full Governance</span>
       </div>
     </div>
   </div>
 </div>
 
-<!-- S07 ACT3: Open -->
-<div class="slide" id="s07">
+<!-- ══ S09 Data Movement Policy ══ -->
+<div class="slide" id="s09">
   <div class="pad" style="flex:1;display:flex;flex-direction:column">
-    <button class="back" onclick="goTo('s02')">&#8592; Agenda</button>
-    <div class="eyebrow">ACT 3 &middot; OPENNESS</div>
-    <div class="h2">Open &amp; Interoperable</div>
+    <button class="back" onclick="goTo('s07')">← 거버넌스로</button>
+    <div class="eyebrow">ACT 2 &middot; Data Security</div>
+    <div class="h2">Data Movement Policy</div>
+    <div class="divline"></div>
+    <div class="g2">
+      <ul class="blist">
+        <li><strong>데이터 유출 방지(DLP)</strong>를 시스템 레벨에서 강제 적용</li>
+        <li>태그된 데이터를 <strong>외부 스테이지로 전송 차단</strong> — S3, Azure Blob 등 포함</li>
+        <li>Snowsight을 통한 <strong>다운로드도 차단</strong></li>
+        <li>Demo 2에서 실제 시연: 외부 스테이지 전송 시도 &rarr; <strong>실시간 차단</strong></li>
+        <li><strong>Connected Audit Access (PP)</strong>: Horizon Catalog 내 교차 시스템 감사 통합 뷰</li>
+        <li><strong>External Engine Access Management (PP)</strong>: Spark&middot;Databricks 등 외부 엔진 접근 제어</li>
+        <li>Agent Identity와 연동: <strong>에이전트별로 다른 이동 정책</strong> 적용 가능</li>
+      </ul>
+      <div style="display:flex;flex-direction:column;gap:clamp(10px,1.8vh,16px)">
+        <div class="ibox">
+          <div class="ibox-t">Demo 2 시연 내용 (1:09:13~)</div>
+          <ol class="dsteps">
+            <li>외부 스테이지로 내보내기 시도</li>
+            <li>Data Movement Policy가 자동 차단</li>
+            <li>Trust Center에서 위반 내역 확인</li>
+          </ol>
+        </div>
+        <div class="se-tip">
+          <div class="se-tip-t">SE TIP</div>
+          <p>금융&middot;의료&middot;공공 고객의 #1 요구사항. "데이터가 Snowflake 밖으로 나갈 수 없습니다"를 시스템 레벨에서 보장하는 스토리. 기존 DLP 솔루션 대비 "네이티브 통합"이라는 점을 강조하세요.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ S10 Interactive Compiler ══ -->
+<div class="slide" id="s10">
+  <div class="pad" style="flex:1;display:flex;flex-direction:column">
+    <button class="back" onclick="goTo('s07')">← 거버넌스로</button>
+    <div class="eyebrow">ACT 2 &middot; Performance</div>
+    <div class="h2">Interactive Compiler &amp; Adaptive Compute</div>
     <div class="divline"></div>
     <div class="g2">
       <div>
-        <ul class="blist">
-          <li><strong>Apache Iceberg V3 GA</strong>: Most comprehensive implementation. V4 spec contribution</li>
-          <li><strong>Managed Iceberg Storage GA</strong>: AWS + Azure GA (GCP coming)</li>
-          <li><strong>SAP Zero-copy GA</strong>: Most requested partner integration</li>
-          <li><strong>Workday &middot; IBM Watsonx &middot; AVEVA</strong>: Additional Zero-copy partners</li>
-          <li><strong>Open Sharing (PP)</strong>: Share data via Iceberg REST to non-Snowflake users</li>
-          <li><strong>Multi-party Collaboration GA</strong>: Multiple orgs in one secure env. Netflix early adopter</li>
-          <li><strong>Data Re-sharing GA</strong>: Freely re-share received data to 3rd parties</li>
-          <li><strong>Open Semantic Interchange</strong>: Snowflake-founded open semantic layer standard</li>
+        <div style="font-size:14px;font-weight:700;color:var(--blue);margin-bottom:10px">Interactive Compiler (NEW)</div>
+        <ul class="blist" style="margin-bottom:20px">
+          <li>새로운 쿼리 컴파일러 도입 — 컴파일 속도 <strong>40배 향상</strong></li>
+          <li>전체 워크로드 <strong>3~4배 가속</strong></li>
+          <li>대화형 쿼리에서 응답 시간 획기적 단축</li>
+          <li>"40X FASTER" — 무대에서 직접 시연</li>
         </ul>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px">
-          <span class="kw" onclick="goTo('s08')">Iceberg V3 Details &rarr;</span>
-        </div>
+        <div style="font-size:14px;font-weight:700;color:var(--green);margin-bottom:10px">Adaptive Compute (GA)</div>
+        <ul class="blist">
+          <li>1세대 대비 약 <strong>2배 빠름</strong>, 현재 점진적 롤아웃</li>
+          <li>AI 워크로드용 컴퓨트 리소스 자동 최적화</li>
+          <li>수동 튜닝 불필요 — Snowflake가 알아서 최적 구성</li>
+          <li><strong>Unistore 8배 최적화 (PP)</strong>: Hybrid Table 지연&middot;처리량 개선</li>
+        </ul>
       </div>
       <div style="display:flex;flex-direction:column;gap:clamp(10px,1.8vh,16px)">
         <div class="ibox">
-          <div class="ibox-t">Zero-copy Partner Expansion</div>
+          <div class="ibox-t">추가 성능 개선</div>
+          <ul class="blist">
+            <li><strong>Next-gen Account Replication</strong>: 20배 빠름, RPO SLA 보장</li>
+            <li><strong>Observe 인수 완료</strong>: 로그&middot;APM&middot;인프라 모니터링 네이티브 통합</li>
+            <li>Streaming Feature Serving GA: 수십 밀리초 지연의 실시간 피처 제공</li>
+          </ul>
+        </div>
+        <div class="se-tip">
+          <div class="se-tip-t">SE TIP</div>
+          <p>성능 불만이 있는 고객에게: "40x 컴파일러 개선이 자동 적용됩니다." Adaptive Compute는 "웨어하우스 사이즈 고민 끝"이라는 메시지로. Unistore 고객에게는 8x 개선 소식이 특히 중요합니다.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ S11 ACT3 개방성 ══ -->
+<div class="slide" id="s11">
+  <div class="pad" style="flex:1;display:flex;flex-direction:column">
+    <button class="back" onclick="goTo('s02')">← 목차로</button>
+    <div class="eyebrow">ACT 3 &middot; 개방성</div>
+    <div class="h2">Open &amp; Interoperable — No Silos</div>
+    <div class="divline"></div>
+    <div class="g2">
+      <ul class="blist">
+        <li><strong>Apache Iceberg V3 GA</strong>: 가장 광범위한 구현. V4 스펙 개발 참여</li>
+        <li><strong>Snowflake Managed Iceberg Storage GA</strong>: AWS + Azure GA (GCP 예정)</li>
+        <li><span class="kw" onclick="goTo('s12')">SAP Zero-copy GA &rarr;</span> 가장 많이 요청된 파트너 통합</li>
+        <li><strong>Workday &middot; IBM Watsonx &middot; AVEVA</strong> 추가 Zero-copy</li>
+        <li><span class="kw" onclick="goTo('s13')">Open Sharing (PP) &rarr;</span> Iceberg REST로 비Snowflake 사용자와 데이터 공유</li>
+        <li><span class="kw" onclick="goTo('s14')">Multi-party Collaboration GA &rarr;</span> Netflix 얼리 어답터</li>
+        <li><strong>Data Re-sharing GA</strong>: 수신한 데이터를 제3자에게 자유롭게 재공유</li>
+        <li><strong>Open Semantic Interchange</strong>: 54개 벤더 참여, 시맨틱 레이어 표준화</li>
+      </ul>
+      <div style="display:flex;flex-direction:column;gap:clamp(10px,1.8vh,16px)">
+        <div class="ibox">
+          <div class="ibox-t">Zero-copy 파트너 확장</div>
           <div style="margin-top:6px">
             <span class="pill gr">SAP GA</span>
             <span class="pill yl">Workday NEW</span>
@@ -474,93 +571,139 @@ html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;
             <span class="pill gr">Salesforce</span>
           </div>
           <div style="margin-top:10px;font-size:clamp(11px,1vw,13px);color:var(--muted);line-height:1.6">
-            Query application data directly without movement.<br>SAP is GA, others in Preview.
+            데이터 이동 없이 애플리케이션 데이터를 직접 쿼리.<br>SAP는 현재 GA, 나머지는 Preview.
           </div>
         </div>
         <div class="se-tip">
           <div class="se-tip-t">SE TIP</div>
-          <p>For SAP customers: SAP Zero-copy GA is a major deal-closer. Demo the "query SAP data in Snowflake without ETL" story. For multi-cloud customers: position Iceberg V3 + Open Sharing as "no vendor lock-in, data stays open."</p>
+          <p>"Snowflake IS Iceberg." Databricks 비교 시 V3 GA + V4 기여 + 관리형 스토리지를 강조하세요. SAP 고객: "ETL 없이 SAP 데이터를 Snowflake에서 바로 쿼리" 스토리가 딜 클로저.</p>
         </div>
         <div class="quote">
-          "Nobody feels locked in with Snowflake."
-          <cite>&mdash; Christian Kleinerman</cite>
+          "Snowflake로는 아무도 종속감을 느끼지 않습니다."
+          <cite>— Christian Kleinerman</cite>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- S08 Iceberg V3 -->
-<div class="slide" id="s08">
+<!-- ══ S12 SAP Zero-copy ══ -->
+<div class="slide" id="s12">
   <div class="pad" style="flex:1;display:flex;flex-direction:column">
-    <button class="back" onclick="goTo('s07')">&#8592; Open</button>
-    <div class="eyebrow">ACT 3 &middot; DETAIL</div>
-    <div class="h2">Apache Iceberg V3 &amp; Open Sharing</div>
+    <button class="back" onclick="goTo('s11')">← 개방성으로</button>
+    <div class="eyebrow">ACT 3 &middot; Zero-copy</div>
+    <div class="h2">SAP &amp; Zero-copy Partners</div>
+    <div class="divline"></div>
+    <div class="g2">
+      <ul class="blist">
+        <li><strong>SAP Zero-copy 통합 GA</strong>: 가장 많이 요청된 파트너 통합 — 드디어 정식 출시</li>
+        <li><strong>Workday Data Cloud (NEW)</strong>: HR&middot;재무 데이터를 이동 없이 직접 쿼리</li>
+        <li><strong>IBM Watsonx Data (NEW)</strong>: DB2&middot;메인프레임 데이터와 직접 연동</li>
+        <li><strong>AVEVA Connect (NEW)</strong>: 산업 OT 데이터(공장&middot;설비) 직접 통합</li>
+        <li><strong>Salesforce</strong>: 기존 Zero-copy, CoWork에서 교차 쿼리 가능</li>
+        <li>CoWork에서 Redshift, Postgres 등 외부 데이터에도 AI 직접 적용</li>
+        <li>데이터 이동&middot;복사 없이 애플리케이션 데이터 사일로를 완전 제거</li>
+      </ul>
+      <div style="display:flex;flex-direction:column;gap:clamp(10px,1.8vh,16px)">
+        <div class="ibox">
+          <div class="ibox-t">고객 임팩트</div>
+          <ul class="blist">
+            <li>ETL 파이프라인 제거 &rarr; 운영 비용 절감</li>
+            <li>데이터 freshness: 실시간에 가까운 동기화</li>
+            <li>거버넌스가 원본 시스템까지 확장</li>
+          </ul>
+        </div>
+        <div class="se-tip">
+          <div class="se-tip-t">SE TIP</div>
+          <p>SAP 고객 미팅 시: "이제 GA입니다. Preview가 아닙니다." 기존 ETL 대비 TCO 절감을 계산해주세요. Workday 도입 기업에게는 HR 데이터 분석의 새로운 가능성을 제시.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ S13 Open Sharing ══ -->
+<div class="slide" id="s13">
+  <div class="pad" style="flex:1;display:flex;flex-direction:column">
+    <button class="back" onclick="goTo('s11')">← 개방성으로</button>
+    <div class="eyebrow">ACT 3 &middot; Open Sharing</div>
+    <div class="h2">Open Sharing &amp; Data Re-sharing</div>
     <div class="divline"></div>
     <div class="g2">
       <div>
-        <ul class="blist">
-          <li>Iceberg V3: Most comprehensive implementation in the industry</li>
-          <li>Actively contributing to <strong>V4 spec development</strong></li>
-          <li>Full bi-directional catalog interoperability</li>
-          <li><strong>Managed Iceberg Storage</strong>: AWS + Azure GA, zero vendor lock-in</li>
-          <li><strong>Open Sharing (PP)</strong>: Iceberg REST catalog for non-Snowflake consumers</li>
-          <li><strong>Open Semantic Interchange</strong>: Snowflake-founded standard for semantic layer portability</li>
+        <div style="font-size:14px;font-weight:700;color:var(--blue);margin-bottom:10px">Open Sharing (Public Preview)</div>
+        <ul class="blist" style="margin-bottom:20px">
+          <li>Iceberg REST를 통해 <strong>비Snowflake 사용자에게 데이터 직접 전달</strong></li>
+          <li>수신자가 Snowflake 계정 없어도 데이터 접근 가능</li>
+          <li>Spark, Databricks 등 어떤 Iceberg 호환 엔진에서도 읽기 가능</li>
+          <li>공유와 상호운용성이 하나로 합쳐진 새로운 패러다임</li>
         </ul>
-        <div class="se-tip" style="margin-top:auto">
-          <div class="se-tip-t">SE TIP</div>
-          <p>Key competitive response: "Snowflake IS Iceberg." When facing Databricks comparisons, emphasize V3 GA + V4 contribution + managed storage on all 3 clouds. Open Sharing eliminates the "what about non-Snowflake consumers?" objection entirely.</p>
-        </div>
+        <div style="font-size:14px;font-weight:700;color:var(--green);margin-bottom:10px">Data Re-sharing (GA)</div>
+        <ul class="blist">
+          <li>수신한 데이터를 제3자에게 자유롭게 재공유 가능</li>
+          <li>데이터 마켓플레이스 생태계 확장</li>
+          <li><strong>Open Semantic Interchange</strong>: 54개 벤더 참여 시맨틱 표준</li>
+        </ul>
       </div>
       <div style="display:flex;flex-direction:column;gap:clamp(10px,1.8vh,16px)">
-        <div class="ibox">
-          <div class="ibox-t">Iceberg V3 Key Capabilities</div>
-          <ul class="blist">
-            <li>Full ACID transactions on open format</li>
-            <li>Time travel &amp; zero-copy clone</li>
-            <li>Cross-engine compatibility guaranteed</li>
-            <li>Managed storage = Snowflake handles compaction, optimization</li>
-          </ul>
-        </div>
-        <div class="ibox" style="border-color:rgba(52,211,153,.25)">
-          <div class="ibox-t gr">Customer Value</div>
-          <ul class="blist">
-            <li>No data duplication across engines</li>
-            <li>Freedom to use best tool for each job</li>
-            <li>Reduced storage costs via open format</li>
-          </ul>
+        <div class="se-tip">
+          <div class="se-tip-t">SE TIP</div>
+          <p>Open Sharing은 "비Snowflake 사용자와도 공유 가능"이라는 강력한 반론. 경쟁사 비교에서 "Snowflake는 닫힌 생태계"라는 공격에 대한 완벽한 응답. Data Re-sharing GA로 마켓플레이스 비즈니스 모델도 가능해집니다.</p>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- S09 ACT4: CoWork -->
-<div class="slide" id="s09">
+<!-- ══ S14 Multi-party Collab ══ -->
+<div class="slide" id="s14">
   <div class="pad" style="flex:1;display:flex;flex-direction:column">
-    <button class="back" onclick="goTo('s02')">&#8592; Agenda</button>
-    <div class="eyebrow pu">ACT 4 &middot; AI FOR EVERYONE</div>
-    <div class="h2" style="background:linear-gradient(130deg,#fff 35%,var(--purple) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Snowflake CoWork</div>
+    <button class="back" onclick="goTo('s11')">← 개방성으로</button>
+    <div class="eyebrow">ACT 3 &middot; Collaboration</div>
+    <div class="h2">Multi-party Collaboration GA</div>
+    <div class="divline"></div>
+    <div class="g2">
+      <ul class="blist">
+        <li>여러 조직이 <strong>하나의 안전한 환경</strong>에서 데이터를 함께 분석</li>
+        <li>각 조직의 데이터는 독립적으로 거버넌스 유지 — 상대방에게 원본 미노출</li>
+        <li><strong>Netflix</strong>가 얼리 어답터로 실제 운영 중</li>
+        <li>파트너사&middot;공급사와 Data Clean Room 없이도 프라이버시 보존 분석</li>
+        <li>마케팅&middot;리서치&middot;금융&middot;헬스케어 등 여러 조직 협업이 필요한 산업에 최적</li>
+        <li>GA 전환으로 엔터프라이즈 SLA 보장</li>
+        <li>Open Sharing과 결합 시 비Snowflake 파트너도 협업 가능</li>
+      </ul>
+      <div style="display:flex;flex-direction:column;gap:clamp(10px,1.8vh,16px)">
+        <div class="se-tip">
+          <div class="se-tip-t">SE TIP</div>
+          <p>기존 Data Clean Room 대비 진입장벽이 낮습니다. 유통&middot;광고&middot;금융 협업 시나리오에서 효과적. "Netflix도 사용 중"이라는 레퍼런스가 강력합니다. GA이므로 PoC 아닌 프로덕션 바로 제안 가능.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ S15 ACT4 CoWork ══ -->
+<div class="slide" id="s15">
+  <div class="pad" style="flex:1;display:flex;flex-direction:column">
+    <button class="back" onclick="goTo('s02')">← 목차로</button>
+    <div class="eyebrow pu">ACT 4 &middot; 모두를 위한 AI</div>
+    <div class="h2" style="background:linear-gradient(130deg,#fff 35%,var(--purple) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Snowflake CoWork — 개인 AI 워크 엔진</div>
     <div class="divline" style="background:linear-gradient(90deg,var(--purple),var(--blue))"></div>
     <div class="g2">
       <div style="display:flex;flex-direction:column;gap:clamp(10px,1.8vh,18px)">
         <div class="stat-row">
-          <div class="stat-card"><div class="stat-n pu">83%</div><div class="stat-l">Cortex Sense Accuracy</div></div>
-          <div class="stat-card"><div class="stat-n">24%</div><div class="stat-l">Without Context</div></div>
+          <div class="stat-card"><div class="stat-n pu">83%</div><div class="stat-l">Cortex Sense 정확도</div></div>
+          <div class="stat-card"><div class="stat-n">1,000</div><div class="stat-l">Samsung 임원 사용자</div></div>
         </div>
         <ul class="blist">
-          <li><strong>Personal Work Engine</strong>: One interface, AI selects the right agent automatically</li>
-          <li><strong>User Memory</strong>: Remembers preferences, past conversations, work style</li>
-          <li><strong>Scheduled Tasks</strong>: "Send me this report every morning at 6am"</li>
-          <li><strong>Cortex Sense (NEW)</strong>: Runtime accuracy engine using full business context</li>
-          <li><strong>Artifacts</strong>: Live dashboards shared across org, auto-refreshing</li>
-          <li><strong>Deep Research GA</strong>: Parallel sub-agents for in-depth analysis reports</li>
-          <li><strong>Mobile App GA</strong>: Full CoWork on iOS</li>
+          <li><strong>Personal Work Engine</strong>: 에이전트 선택 불필요. 개인 에이전트가 멀티 에이전트 워크플로우 조율</li>
+          <li><span class="kw pu" onclick="goTo('s16')">User Memory &rarr;</span> 사용 패턴&middot;선호도 학습 &rarr; 응답 품질 지속 향상</li>
+          <li><strong>Scheduled Tasks</strong>: "매주 월요일 6시에 이메일로 보내줘" — 자연어 예약</li>
+          <li><span class="kw pu" onclick="goTo('s17')">Cortex Sense (NEW) &rarr;</span> 정확도 24% &rarr; 83%</li>
+          <li><span class="kw pu" onclick="goTo('s18')">Next-gen Artifacts &rarr;</span> 라이브 데이터 대시보드, 거버넌스 적용</li>
+          <li><span class="kw pu" onclick="goTo('s19')">Natoma 인수 &rarr;</span> 100+ MCP 커넥터, 엔터프라이즈 거버넌스</li>
+          <li><strong>Deep Research GA</strong>: 병렬 서브 에이전트로 심층 분석 보고서 자동 생성</li>
         </ul>
-        <div style="display:flex;gap:8px;flex-wrap:wrap">
-          <span class="kw pu" onclick="goTo('s10')">Cortex Sense &rarr;</span>
-          <span class="kw pu" onclick="goTo('s11')">Natoma MCP &rarr;</span>
-        </div>
       </div>
       <div style="display:flex;flex-direction:column;gap:clamp(10px,1.8vh,16px)">
         <div class="ibox" style="border-color:rgba(129,140,248,.25)">
@@ -568,105 +711,158 @@ html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;
           <div class="vid-thumb" data-start="6100">
             <img src="https://snowflake-summit27-platformkeynote-en.netlify.app/screenshots/platform/11_christian_cowork.jpg" alt="CoWork Demo">
             <div class="vid-play"><div class="vid-play-btn">&#9654;</div></div>
-            <div class="vid-label">&#9654; 1:41:40~ Play</div>
+            <div class="vid-label">&#9654; 1:41:40~ 재생</div>
           </div>
           <ol class="dsteps" style="margin-top:10px">
-            <li>"Start my day" &rarr; integrated briefing from email/Slack/sales data</li>
-            <li>Scheduled: auto-send email every 6am</li>
-            <li>VIP spike +45% chart shared as Artifact</li>
-            <li>Deep Research: parallel sub-agents for analysis report</li>
+            <li>"오늘 하루를 시작해줘" &rarr; 이메일&middot;Slack&middot;영업 데이터 통합 브리핑</li>
+            <li>매일 오전 6시 자동 이메일 발송 (사전 설정)</li>
+            <li>VIP 급증 +45% 차트를 Artifact로 팀원과 공유</li>
+            <li>Deep Research: 병렬 서브 에이전트로 심층 분석</li>
           </ol>
         </div>
         <div class="se-tip">
           <div class="se-tip-t">SE TIP</div>
-          <p>CoWork is the "AI for non-technical users" story. Position it for business stakeholders: executives, analysts, ops. The "Start my day" demo resonates with C-level. Combine with governance story to address security concerns from IT.</p>
+          <p>CoWork는 "비기술 사용자를 위한 AI" 스토리. 경영진&middot;분석가&middot;운영팀에게 포지셔닝하세요. "Start my day" 데모가 C-레벨에게 공감. 거버넌스 스토리와 결합하면 IT 보안 우려도 해소됩니다.</p>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- S10 Cortex Sense -->
-<div class="slide" id="s10">
+<!-- ══ S16 User Memory ══ -->
+<div class="slide" id="s16">
   <div class="pad" style="flex:1;display:flex;flex-direction:column">
-    <button class="back" onclick="goTo('s09')">&#8592; CoWork</button>
-    <div class="eyebrow pu">CORTEX SENSE</div>
-    <div class="h2">Runtime Accuracy Engine</div>
+    <button class="back" onclick="goTo('s15')">← CoWork로</button>
+    <div class="eyebrow pu">ACT 4 &middot; Personalization</div>
+    <div class="h2">User Memory &amp; Scheduled Tasks</div>
+    <div class="divline" style="background:linear-gradient(90deg,var(--purple),var(--blue))"></div>
+    <div class="g2">
+      <div>
+        <div style="font-size:14px;font-weight:700;color:var(--purple);margin-bottom:10px">User Memory</div>
+        <ul class="blist" style="margin-bottom:20px">
+          <li>CoWork가 사용 패턴과 선호도를 <strong>학습하고 기억</strong></li>
+          <li>사용할수록 응답 품질이 지속적으로 향상 — 개인화 누적</li>
+          <li>선호 데이터 소스, 분석 방식, 보고서 형식 등을 자동 파악</li>
+          <li>조직 내에서 역할별로 다른 컨텍스트 유지</li>
+        </ul>
+        <div style="font-size:14px;font-weight:700;color:var(--blue);margin-bottom:10px">Scheduled Tasks</div>
+        <ul class="blist">
+          <li>"매주 월요일 오전 6시에 이 분석을 이메일로 보내줘" — 자연어로 예약</li>
+          <li>반복적인 보고서&middot;알림&middot;대시보드 갱신을 완전 자동화</li>
+          <li>Demo 3에서 실제 시연: 매일 아침 6시 브리핑 이메일 자동 발송</li>
+          <li>Slack MCP와 연동 시 Slack으로 자동 전달도 가능</li>
+        </ul>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:clamp(10px,1.8vh,16px)">
+        <div class="se-tip">
+          <div class="se-tip-t">SE TIP</div>
+          <p>"매주 월요일 보고서" 유스케이스는 모든 고객이 공감합니다. 현재 수동으로 하고 있는 반복 업무를 자연어 한 줄로 자동화할 수 있다는 것을 보여주세요. User Memory는 "쓸수록 똑똑해진다"로 포지셔닝.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ S17 Cortex Sense ══ -->
+<div class="slide" id="s17">
+  <div class="pad" style="flex:1;display:flex;flex-direction:column">
+    <button class="back" onclick="goTo('s15')">← CoWork로</button>
+    <div class="eyebrow pu">CoWork 핵심 기술</div>
+    <div class="h2">Cortex Sense — 런타임 정확도 엔진</div>
     <div class="divline" style="background:linear-gradient(90deg,var(--green),var(--blue))"></div>
     <div class="g2">
       <div>
-        <div style="display:flex;align-items:center;gap:clamp(16px,3vw,36px);
-          background:var(--card);border:1px solid var(--border);border-radius:14px;
-          padding:clamp(16px,2.5vh,28px) clamp(20px,3vw,36px);margin-bottom:clamp(12px,1.8vh,20px)">
+        <div class="acc-wrap">
           <div style="flex:1;text-align:center">
-            <div style="font-size:clamp(42px,7vw,72px);font-weight:900;line-height:1;color:var(--red)">24%</div>
-            <div style="font-size:clamp(11px,1vw,13px);color:var(--muted);margin-top:4px">Generic Frontier Model<br>(no context)</div>
+            <div class="acc-n" style="color:var(--red)">24%</div>
+            <div class="acc-l">일반 프론티어 모델<br>(컨텍스트 없음)</div>
           </div>
           <div style="font-size:clamp(24px,4vw,48px);color:var(--blue)">&rarr;</div>
           <div style="flex:1;text-align:center">
-            <div style="font-size:clamp(42px,7vw,72px);font-weight:900;line-height:1;color:var(--green)">83%</div>
-            <div style="font-size:clamp(11px,1vw,13px);color:var(--muted);margin-top:4px">Cortex Sense<br>(full business context)</div>
+            <div class="acc-n" style="color:var(--green)">83%</div>
+            <div class="acc-l">Cortex Sense<br>(전체 비즈니스 컨텍스트)</div>
           </div>
         </div>
         <ul class="blist">
-          <li>Dynamically assembles <strong>data + business definitions + operational knowledge</strong> at runtime</li>
-          <li>Unlike static semantic layers: <strong>dynamically composes context</strong></li>
-          <li>Provides most relevant context in real-time per query</li>
-          <li>Works in both CoWork and CoCo, auto-activated</li>
+          <li>런타임에서 <strong>데이터&middot;비즈니스 정의&middot;운영 지식</strong>을 자동으로 조합</li>
+          <li>정적 시맨틱 레이어와 달리 <strong>동적으로 컨텍스트를 조합</strong></li>
+          <li>에이전트가 쿼리할 때마다 가장 관련성 높은 컨텍스트를 실시간 제공</li>
+          <li>CoWork와 CoCo <strong>모두에서 동작</strong>, 별도 설정 없이 자동 활성화</li>
         </ul>
       </div>
       <div style="display:flex;flex-direction:column;gap:clamp(10px,1.8vh,16px)">
         <div class="ibox">
-          <div class="ibox-t">Horizon Context Integration</div>
+          <div class="ibox-t">Horizon Context와의 연계</div>
           <ul class="blist">
-            <li>Horizon Context <strong>collects semantic signals</strong></li>
-            <li>Cortex Sense <strong>dynamically composes at runtime</strong></li>
-            <li>Uses Semantic Views + external metadata connectors</li>
+            <li>Horizon Context가 <strong>시맨틱 신호를 수집</strong></li>
+            <li>Cortex Sense가 <strong>런타임에 동적으로 조합</strong></li>
+            <li>Semantic Views와 외부 메타데이터 커넥터 활용</li>
           </ul>
         </div>
         <div class="se-tip">
           <div class="se-tip-t">SE TIP</div>
-          <p>The 24% &rarr; 83% accuracy jump is the most compelling stat in the entire keynote. Use this when customers say "AI hallucinations concern us." Show that Cortex Sense + Semantic Views = grounded, accurate responses. Prerequisite: help customers build good Semantic Views first.</p>
+          <p>24% &rarr; 83% 정확도 향상은 키노트 최고의 수치. 고객이 "AI 할루시네이션이 걱정"이라고 할 때 이 수치를 사용하세요. 전제조건: 좋은 Semantic Views를 먼저 구축해야 합니다. Semantic View 컨설팅을 선행 제안하세요.</p>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- S11 Natoma -->
-<div class="slide" id="s11">
+<!-- ══ S18 Artifacts ══ -->
+<div class="slide" id="s18">
   <div class="pad" style="flex:1;display:flex;flex-direction:column">
-    <button class="back" onclick="goTo('s09')">&#8592; CoWork</button>
-    <div class="eyebrow pu">ACT 4 &middot; ACQUISITION</div>
-    <div class="h2">Natoma &mdash; Enterprise MCP Hub</div>
+    <button class="back" onclick="goTo('s15')">← CoWork로</button>
+    <div class="eyebrow pu">ACT 4 &middot; Sharing</div>
+    <div class="h2">Next-gen Artifacts</div>
     <div class="divline" style="background:linear-gradient(90deg,var(--purple),var(--blue))"></div>
     <div class="g2">
-      <div>
-        <ul class="blist">
-          <li><strong>Announced May 27, 2026</strong>, confirmed at Summit</li>
-          <li>Enterprise <strong>MCP (Model Context Protocol) platform</strong></li>
-          <li>Centralized MCP gateway: ID verification + access policies + audit at tool-call level</li>
-          <li>Connects CoCo/CoWork to <strong>100+ business systems</strong></li>
-          <li>Google Drive, Gmail, Zoom, Jira, Slack, GitHub, Microsoft 365</li>
-          <li>All external access governed by <strong>Snowflake security &amp; access control</strong></li>
-          <li>MCP is an open standard led by Anthropic</li>
-        </ul>
-        <div class="se-tip">
-          <div class="se-tip-t">SE TIP</div>
-          <p>Natoma answers "how does CoWork connect to our tools?" Position as the secure bridge: unlike raw MCP, Natoma adds enterprise governance (auth, audit, rate limiting) on every tool call. Key differentiator vs competitors who just support raw MCP.</p>
-        </div>
-      </div>
+      <ul class="blist">
+        <li><strong>라이브 데이터와 연결된 거버넌스 대시보드</strong> — 정적 PDF가 아닌 살아있는 결과물</li>
+        <li>CoCo로 빌드 &rarr; CoWork로 게시하고 조직 전체에 공유</li>
+        <li>공유 후에도 <strong>데이터가 자동 갱신</strong> — 항상 최신 인사이트</li>
+        <li>거버넌스 정책이 Artifact에도 적용 — <strong>권한 없는 사람은 볼 수 없음</strong></li>
+        <li>Demo 3에서 시연: VIP 급증 +45% 차트를 Artifact로 즉시 공유</li>
+        <li><strong>Deep Research</strong>와 연계: 병렬 서브 에이전트 인사이트를 Artifact로 패키징</li>
+        <li>Cortex Sense가 여러 Artifact에서 <strong>횡단적 인사이트 자동 추출</strong></li>
+      </ul>
       <div style="display:flex;flex-direction:column;gap:clamp(10px,1.8vh,16px)">
         <div class="ibox" style="border-color:rgba(129,140,248,.25)">
-          <div class="ibox-t pu">How It Works in Demo 3</div>
-          <ol class="dsteps">
-            <li>CoWork generates analysis result</li>
-            <li>Slack MCP: one-click send to Slack channel</li>
-            <li>Snowflake governance applies to external sends too</li>
-          </ol>
+          <div class="ibox-t pu">Deep Research GA</div>
+          <ul class="blist">
+            <li>병렬 서브 에이전트로 <strong>심층 분석 자동화</strong></li>
+            <li>구조화&middot;비정형 데이터를 모두 포함한 인사이트 리포트</li>
+            <li>Mobile App GA: iOS에서도 CoWork 전체 기능 사용</li>
+          </ul>
         </div>
-        <div class="ibox">
-          <div class="ibox-t">Supported Connectors (100+)</div>
+        <div class="se-tip">
+          <div class="se-tip-t">SE TIP</div>
+          <p>Artifacts는 "기존 BI 대시보드를 대체"하는 것이 아닌 "AI가 생성한 인사이트를 거버넌스와 함께 공유"하는 새로운 패러다임. BI팀보다는 비즈니스 사용자에게 타겟팅하세요.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ S19 Natoma ══ -->
+<div class="slide" id="s19">
+  <div class="pad" style="flex:1;display:flex;flex-direction:column">
+    <button class="back" onclick="goTo('s15')">← CoWork로</button>
+    <div class="eyebrow pu">ACT 4 &middot; Acquisition</div>
+    <div class="h2">Natoma — 엔터프라이즈 MCP Hub</div>
+    <div class="divline" style="background:linear-gradient(90deg,var(--purple),var(--blue))"></div>
+    <div class="g2">
+      <ul class="blist">
+        <li><strong>2026년 5월 27일 인수 의향 발표</strong>, Summit에서 공식 확인</li>
+        <li>Natoma: <strong>엔터프라이즈 MCP(Model Context Protocol) 플랫폼</strong></li>
+        <li><strong>중앙화된 MCP 게이트웨이</strong>: 도구 호출 레벨에서 ID 검증&middot;접근 정책&middot;감사</li>
+        <li>CoCo/CoWork를 <strong>100개 이상의 비즈니스 시스템</strong>과 연결</li>
+        <li>Google Drive, Gmail, Zoom, Jira, Slack, GitHub, Microsoft 365 등</li>
+        <li>모든 외부 시스템 접근이 <strong>Snowflake 보안&middot;접근 제어</strong>로 거버넌스</li>
+        <li>MCP는 Anthropic이 주도한 오픈 표준</li>
+      </ul>
+      <div style="display:flex;flex-direction:column;gap:clamp(10px,1.8vh,16px)">
+        <div class="ibox" style="border-color:rgba(129,140,248,.25)">
+          <div class="ibox-t pu">지원 커넥터 (100+)</div>
           <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap">
             <span class="pill bl">Slack</span>
             <span class="pill gr">Gmail</span>
@@ -677,118 +873,187 @@ html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;
             <span class="pill yl">M365</span>
           </div>
         </div>
+        <div class="se-tip">
+          <div class="se-tip-t">SE TIP</div>
+          <p>Natoma는 "CoWork가 외부 도구와 어떻게 연결되나?"에 대한 답변. Raw MCP와 달리 엔터프라이즈 거버넌스(인증, 감사, 속도 제한)가 모든 도구 호출에 적용된다는 점이 핵심 차별점입니다.</p>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- S12 Customer: Samsung -->
-<div class="slide" id="s12">
+<!-- ══ S20 고객사례: Thomson Reuters ══ -->
+<div class="slide" id="s20">
   <div class="pad" style="flex:1;display:flex;flex-direction:column">
-    <button class="back" onclick="goTo('s02')">&#8592; Agenda</button>
-    <div class="eyebrow">CUSTOMER STORY</div>
-    <div class="h2">Samsung Electronics &mdash; AX CoWork</div>
+    <button class="back" onclick="goTo('s02')">← 목차로</button>
+    <div class="eyebrow">고객 사례 1/3</div>
+    <div class="h2">Thomson Reuters — 거버넌스는 AI 가속 장치</div>
     <div class="divline"></div>
     <div class="g2">
-      <div>
-        <ul class="blist">
-          <li><strong>AX (Agent Experience)</strong>: From UX &rarr; AX paradigm shift</li>
-          <li>1,000 executives use CoWork <strong>daily</strong> for decision-making</li>
-          <li>Report requests that took days now completed in <strong>minutes</strong></li>
-          <li>Strict governance: Korean data sovereignty + role-based access</li>
-          <li>Natural language interface eliminated training barrier</li>
-          <li>Deep Research used for competitive analysis reports</li>
-        </ul>
+      <ul class="blist">
+        <li><strong>CoCounsel</strong>: 법률&middot;세무&middot;감사 전문가 100만+ 명이 매일 사용하는 AI 제품</li>
+        <li><strong>Semantic Intelligence</strong>: 1,500+ 내부 사용자가 금융&middot;비즈니스 의사결정에 활용</li>
+        <li>로이터 뉴스, 원자재, HR 등 구조화&middot;비정형 데이터를 거버넌스와 함께 통합</li>
+        <li>파일럿이 아닌 <strong>실제 운영 환경</strong>에서 AI 제품 운영 중</li>
+        <li>"거버넌스는 제약이 아닌 <strong>가속 장치</strong>" — 핵심 메시지</li>
+        <li>데이터 이동 없이 전사 AI 적용: Snowflake 거버넌스가 핵심 가능 요소</li>
+      </ul>
+      <div style="display:flex;flex-direction:column;gap:clamp(10px,1.8vh,16px)">
+        <div class="ibox">
+          <div class="ibox-t">화이어사이드 챗 (~56:54)</div>
+          <div class="vid-thumb" data-start="2644">
+            <img src="https://snowflake-summit27-platformkeynote-en.netlify.app/screenshots/platform/05_caitlin_thomson_reuters.jpg" alt="Thomson Reuters">
+            <div class="vid-play"><div class="vid-play-btn">&#9654;</div></div>
+            <div class="vid-label">&#9654; 44:04~ 재생</div>
+          </div>
+        </div>
         <div class="se-tip">
           <div class="se-tip-t">SE TIP</div>
-          <p>Samsung case is GOLD for Korean enterprise customers. Key takeaways: 1) Start with executive users (high-impact, low-technical-barrier), 2) Governance-first approach enabled rapid adoption, 3) "AX" framing resonates with CxO audiences. Use this reference proactively.</p>
+          <p>규제 산업(금융, 법률, 의료) 고객에게 가장 설득력 있는 사례. "거버넌스를 먼저 구축하면 AI 도입이 가속된다"는 메시지를 전달하세요. 100만+ 사용자 규모가 엔터프라이즈 신뢰를 줍니다.</p>
         </div>
+        <span class="kw" onclick="goTo('s21')">Under Armour &rarr;</span>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ S21 고객사례: Under Armour ══ -->
+<div class="slide" id="s21">
+  <div class="pad" style="flex:1;display:flex;flex-direction:column">
+    <button class="back" onclick="goTo('s20')">← Thomson</button>
+    <div class="eyebrow">고객 사례 2/3</div>
+    <div class="h2">Under Armour — 종속 없는 인터-옵 전략</div>
+    <div class="divline"></div>
+    <div class="g2">
+      <ul class="blist">
+        <li>Snowflake와 <strong>7년 파트너십</strong>. "기념비"로서 선택 — 종속 없음, 무한 확장</li>
+        <li>내부 에이전트 <strong>"Ada"</strong>: 모든 팀원이 자연어로 데이터 쿼리 가능</li>
+        <li>Elementum 파트너와 함께 <strong>AX(AI 기반 프로세스 전환)</strong> 구축</li>
+        <li>단순 최적화가 아닌 <strong>워크플로우 자체를 재설계</strong>하는 접근</li>
+        <li>SAP&middot;Workday Zero-copy가 핵심 가능 요소</li>
+        <li>공급망, 마케팅, 리테일 전반에 AI 적용</li>
+      </ul>
+      <div style="display:flex;flex-direction:column;gap:clamp(10px,1.8vh,16px)">
+        <div class="ibox">
+          <div class="ibox-t">무대 발표 (~1:27:00)</div>
+          <div class="vid-thumb" data-start="4450">
+            <img src="https://snowflake-summit27-platformkeynote-en.netlify.app/screenshots/platform/08_ua.jpg" alt="Under Armour">
+            <div class="vid-play"><div class="vid-play-btn">&#9654;</div></div>
+            <div class="vid-label">&#9654; 1:14:10~ 재생</div>
+          </div>
+        </div>
+        <div class="se-tip">
+          <div class="se-tip-t">SE TIP</div>
+          <p>제조&middot;리테일 고객에게 적합한 레퍼런스. "7년 파트너십 + 종속 없음"이 장기 계약 의사결정에 도움. "Ada" 에이전트는 CoWork 커스텀 에이전트의 좋은 사례입니다.</p>
+        </div>
+        <span class="kw" onclick="goTo('s22')">Samsung &rarr;</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ S22 고객사례: Samsung ══ -->
+<div class="slide" id="s22">
+  <div class="pad" style="flex:1;display:flex;flex-direction:column">
+    <button class="back" onclick="goTo('s21')">← Under Armour</button>
+    <div class="eyebrow">고객 사례 3/3</div>
+    <div class="h2">Samsung Electronics — 1,000명 임직원이 매일 쓰는 AI</div>
+    <div class="divline"></div>
+    <div class="g2">
+      <ul class="blist">
+        <li><strong>SIAA (Shopper's Insight Action Agent)</strong>: Galaxy S26 출시 기간 실제 운영</li>
+        <li><strong>AX (AI 기반 프로세스 전환)</strong>: AI가 프로세스 중심에서 신호 모니터링 &rarr; 액션 자동 제안</li>
+        <li>임직원&middot;영업&middot;마케팅 직원 <strong>1,000명이 매일</strong> 에이전트 활용</li>
+        <li>이 중 데이터 과학자는 <strong>단 한 명도 없음</strong></li>
+        <li>데이터팀 병목 해소 &rarr; 모든 리더가 직접 데이터에 접근</li>
+        <li>팀 워크플로우 <strong>수 시간 &rarr; 수 초</strong>로 단축</li>
+        <li>Jung Suh (VP, Digital Commerce) 무대 발표</li>
+      </ul>
       <div style="display:flex;flex-direction:column;gap:clamp(10px,1.8vh,16px)">
         <div class="ibox" style="border-color:rgba(129,140,248,.25)">
-          <div class="ibox-t pu">Video (1:19:30~)</div>
+          <div class="ibox-t pu">무대 발표 (1:19:30~)</div>
           <div class="vid-thumb" data-start="4770">
             <img src="https://snowflake-summit27-platformkeynote-en.netlify.app/screenshots/platform/09_samsung.jpg" alt="Samsung">
             <div class="vid-play"><div class="vid-play-btn">&#9654;</div></div>
-            <div class="vid-label">&#9654; 1:19:30~ Play</div>
+            <div class="vid-label">&#9654; 1:19:30~ 재생</div>
           </div>
         </div>
-        <div class="quote">
-          "AX is the new UX &mdash; agent experience defines how enterprises will work."
-          <cite>&mdash; Samsung Electronics, Snowflake Summit 2026</cite>
+        <div class="se-tip">
+          <div class="se-tip-t">SE TIP</div>
+          <p>한국 기업 고객에게 최고의 레퍼런스. 핵심 포인트: 1) 임원부터 시작(고임팩트, 저기술장벽), 2) 거버넌스-퍼스트로 빠른 도입, 3) "AX" 프레이밍이 CxO에게 공감. 적극 활용하세요.</p>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- S13 ACTIONS -->
-<div class="slide" id="s13">
+<!-- ══ S23 ACTIONS ══ -->
+<div class="slide" id="s23">
   <div class="pad" style="flex:1;display:flex;flex-direction:column">
-    <button class="back" onclick="goTo('s02')">&#8592; Agenda</button>
+    <button class="back" onclick="goTo('s02')">← 목차로</button>
     <div class="eyebrow gr">NEXT STEPS</div>
-    <div class="h2">SE Action Items</div>
+    <div class="h2">SE 액션 아이템</div>
     <div class="divline" style="background:linear-gradient(90deg,var(--green),var(--blue))"></div>
     <div class="ag">
       <div class="card" style="display:flex;flex-direction:column;gap:8px">
-        <span class="pill gr" style="align-self:flex-start">Now</span>
-        <div style="font-size:clamp(12px,1.3vw,14px);font-weight:700">CoCo Desktop Demo</div>
-        <div style="font-size:clamp(11px,1.1vw,13px);color:var(--muted);line-height:1.65">Install CoCo Desktop, practice the Snow Music demo flow. Natural language &rarr; diagnose &rarr; fix &rarr; deploy. Most effective first customer touchpoint.</div>
+        <span class="pill gr" style="align-self:flex-start">지금 바로</span>
+        <div style="font-size:clamp(12px,1.3vw,14px);font-weight:700">CoCo Desktop 데모 준비</div>
+        <div style="font-size:clamp(11px,1.1vw,13px);color:var(--muted);line-height:1.65">CoCo Desktop을 설치하고, Snow Music 데모 흐름을 연습하세요. 자연어 &rarr; 진단 &rarr; 수정 &rarr; 배포. 고객 첫 미팅 최적 터치포인트.</div>
       </div>
       <div class="card" style="display:flex;flex-direction:column;gap:8px">
-        <span class="pill gr" style="align-self:flex-start">Now</span>
-        <div style="font-size:clamp(12px,1.3vw,14px);font-weight:700">CoWork + Governance Story</div>
-        <div style="font-size:clamp(11px,1.1vw,13px);color:var(--muted);line-height:1.65">Prepare the "AI for everyone + governance built-in" narrative. Lead with governance to address security concerns, then show CoWork capabilities.</div>
+        <span class="pill gr" style="align-self:flex-start">지금 바로</span>
+        <div style="font-size:clamp(12px,1.3vw,14px);font-weight:700">CoWork + 거버넌스 스토리</div>
+        <div style="font-size:clamp(11px,1.1vw,13px);color:var(--muted);line-height:1.65">"전사 AI + 거버넌스 내장" 내러티브를 준비하세요. 거버넌스로 리드 &rarr; 보안 우려 해소 &rarr; CoWork 기능 보여주기.</div>
       </div>
       <div class="card" style="display:flex;flex-direction:column;gap:8px">
-        <span class="pill yl" style="align-self:flex-start">Soon</span>
-        <div style="font-size:clamp(12px,1.3vw,14px);font-weight:700">Cortex Agent Workshop</div>
-        <div style="font-size:clamp(11px,1.1vw,13px);color:var(--muted);line-height:1.65">Build hands-on workshop: Agent Identity + Semantic Views + Cortex Sense. Show the 24% &rarr; 83% accuracy improvement with real customer data.</div>
+        <span class="pill yl" style="align-self:flex-start">곧 시작</span>
+        <div style="font-size:clamp(12px,1.3vw,14px);font-weight:700">Cortex Agent 워크숍</div>
+        <div style="font-size:clamp(11px,1.1vw,13px);color:var(--muted);line-height:1.65">Agent Identity + Semantic Views + Cortex Sense 핸즈온 워크숍. 24% &rarr; 83% 정확도 향상을 실제 고객 데이터로 시연.</div>
       </div>
       <div class="card" style="display:flex;flex-direction:column;gap:8px">
-        <span class="pill yl" style="align-self:flex-start">Soon</span>
+        <span class="pill yl" style="align-self:flex-start">곧 시작</span>
         <div style="font-size:clamp(12px,1.3vw,14px);font-weight:700">SAP Zero-copy POC</div>
-        <div style="font-size:clamp(11px,1.1vw,13px);color:var(--muted);line-height:1.65">For SAP customers: prepare Zero-copy integration demo. Now GA &mdash; no more "it's in preview" objection. Calculate TCO vs traditional ETL.</div>
+        <div style="font-size:clamp(11px,1.1vw,13px);color:var(--muted);line-height:1.65">SAP 고객: Zero-copy GA 데모 준비. "Preview 아닙니다" — 바로 프로덕션 적용 가능. ETL 대비 TCO 절감 계산.</div>
       </div>
       <div class="card" style="display:flex;flex-direction:column;gap:8px">
-        <span class="pill pu" style="align-self:flex-start">Explore</span>
-        <div style="font-size:clamp(12px,1.3vw,14px);font-weight:700">Data Stream Positioning</div>
-        <div style="font-size:clamp(11px,1.1vw,13px);color:var(--muted);line-height:1.65">Identify customers with Kafka pain. Position Data Stream as cost+ops simplification. Build TCO comparison model for Kafka vs Data Stream.</div>
+        <span class="pill pu" style="align-self:flex-start">탐색</span>
+        <div style="font-size:clamp(12px,1.3vw,14px);font-weight:700">Data Stream 포지셔닝</div>
+        <div style="font-size:clamp(11px,1.1vw,13px);color:var(--muted);line-height:1.65">Kafka 운영 고통이 있는 고객 식별. Data Stream = 비용+운영 간소화. Kafka vs Data Stream TCO 비교 모델 구축.</div>
       </div>
       <div class="card" style="display:flex;flex-direction:column;gap:8px">
-        <span class="pill pu" style="align-self:flex-start">Explore</span>
-        <div style="font-size:clamp(12px,1.3vw,14px);font-weight:700">Samsung AX Reference</div>
-        <div style="font-size:clamp(11px,1.1vw,13px);color:var(--muted);line-height:1.65">Use Samsung case for Korean enterprise pitches. "1,000 executives daily" is a compelling proof point. AX framing works for C-level conversations.</div>
+        <span class="pill pu" style="align-self:flex-start">탐색</span>
+        <div style="font-size:clamp(12px,1.3vw,14px);font-weight:700">Samsung AX 레퍼런스 활용</div>
+        <div style="font-size:clamp(11px,1.1vw,13px);color:var(--muted);line-height:1.65">한국 기업 대상 피칭에 Samsung 사례 적극 활용. "임원 1,000명이 매일 사용" — C-레벨 대화에서 강력한 증거.</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- S14 CLOSING -->
-<div class="slide" id="s14">
+<!-- ══ S24 CLOSING ══ -->
+<div class="slide" id="s24">
   <div class="pad" style="flex:1;display:flex;flex-direction:column;background:radial-gradient(ellipse at 30% 60%,#0d2550 0%,var(--bg) 65%)">
     <div class="eyebrow" style="margin-bottom:clamp(12px,2vh,20px)">SNOWFLAKE SUMMIT 2026 &middot; CLOSING</div>
     <div class="g2" style="flex:1;min-height:0;align-items:center">
       <div style="display:flex;flex-direction:column;justify-content:center;gap:clamp(14px,2.5vh,28px)">
         <div style="font-size:clamp(16px,2.2vw,26px);color:var(--muted);font-style:italic;line-height:1.9">
-          "Snowflake takes you from<br>
-          <span style="color:var(--text);font-style:normal;font-weight:700">'Can we?'</span> to<br>
-          <span style="color:var(--blue);font-style:normal;font-weight:700">'Shall we?'</span>"
+          "Snowflake는 여러분을<br>
+          <span style="color:var(--text);font-style:normal;font-weight:700">'할 수 있을까? (Can we?)'</span> 시대에서<br>
+          <span style="color:var(--blue);font-style:normal;font-weight:700">'이제 해볼까? (Shall we?)'</span> 시대로<br>
+          이끕니다."
         </div>
         <div style="font-size:clamp(12px,1.2vw,14px);color:var(--muted)">&mdash; Christian Kleinerman, EVP of Product</div>
         <div class="se-tip" style="margin-top:10px">
           <div class="se-tip-t">FINAL SE NOTE</div>
-          <p>This keynote's message: Snowflake is no longer just a data warehouse. It's the AI platform. Lead conversations with CoCo (developers) + CoWork (everyone) + Governance (security). The platform story is now: Data + AI + Apps, governed and open.</p>
+          <p>이번 키노트의 메시지: Snowflake는 더 이상 데이터 웨어하우스가 아닙니다. AI 플랫폼입니다. CoCo(개발자) + CoWork(모든 사람) + Governance(보안)로 리드하세요. Data + AI + Apps, 거버넌스와 개방성을 갖춘 플랫폼.</p>
         </div>
         <div style="display:flex;gap:10px;flex-wrap:wrap">
-          <span class="kw" onclick="goTo('s01')">Start</span>
-          <span class="kw" onclick="goTo('s02')">Agenda</span>
-          <span class="kw gr" onclick="goTo('s13')">Actions</span>
+          <span class="kw" onclick="goTo('s01')">처음으로</span>
+          <span class="kw" onclick="goTo('s02')">목차로</span>
+          <span class="kw gr" onclick="goTo('s23')">액션 아이템</span>
         </div>
       </div>
       <div style="position:relative;padding-top:56.25%;border-radius:10px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.5)">
-        <iframe style="position:absolute;top:0;left:0;width:100%;height:100%;border:0"
-          src="https://www.youtube.com/embed/NFTdHYp9uJo?start=5777&rel=0&modestbranding=1" allowfullscreen></iframe>
+        <iframe style="position:absolute;top:0;left:0;width:100%;height:100%;border:0" src="https://www.youtube.com/embed/NFTdHYp9uJo?start=5777&amp;rel=0&amp;modestbranding=1" allowfullscreen></iframe>
       </div>
     </div>
   </div>
@@ -798,21 +1063,20 @@ html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;
 
 <!-- NAVBAR -->
 <div id="navbar">
-  <button class="nbtn" id="btn-prev" onclick="prevSlide()">&#8592; Prev</button>
+  <button class="nbtn" id="btn-prev" onclick="prevSlide()">← 이전</button>
   <div style="display:flex;align-items:center;gap:10px">
-    <button class="nbtn" onclick="goTo('s01')">&#8962;</button>
-    <span id="ctr">1 / 14</span>
-    <button class="nbtn purple" onclick="goTo('s02')">&#9776; Agenda</button>
+    <button class="nbtn" onclick="goTo('s01')">⌂</button>
+    <span id="ctr">1 / 24</span>
+    <button class="nbtn purple" onclick="goTo('s02')">☰ 목차</button>
   </div>
-  <button class="nbtn" id="btn-next" onclick="nextSlide()">Next &#8594;</button>
+  <button class="nbtn" id="btn-next" onclick="nextSlide()">다음 →</button>
 </div>
 
 <script>
-const ORDER=['s01','s02','s03','s04','s05','s06','s07','s08','s09','s10','s11','s12','s13','s14'];
+const ORDER=['s01','s02','s03','s04','s05','s06','s07','s08','s09','s10','s11','s12','s13','s14','s15','s16','s17','s18','s19','s20','s21','s22','s23','s24'];
 let cur=0,busy=false;
 
 function idx(id){return ORDER.indexOf(id)}
-
 function goTo(id,dir){
   if(busy)return;
   const to=idx(id);
@@ -849,7 +1113,7 @@ document.addEventListener('keydown',e=>{
 });
 ui();
 
-// Video thumb click to embed
+// Video thumb click-to-play
 document.querySelectorAll('.vid-thumb').forEach(el=>{
   el.addEventListener('click',function(){
     const start=this.dataset.start||'0';
