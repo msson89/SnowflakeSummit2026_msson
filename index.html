@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Snowflake Summit 2026 · Platform Keynote Summary by msson</title>
+<style>
+:root{
+  --bg:#08101e;
+  --blue:#29b5e8;
+  --purple:#818cf8;
+  --green:#34d399;
+  --yellow:#fbbf24;
+  --red:#f87171;
+  --text:#f1f5f9;
+  --muted:#94a3b8;
+  --card:#0f1e33;
+  --border:#1e3450;
+  --nav:48px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans KR',sans-serif}
+
+/* SLIDE SHELL */
+#deck{position:fixed;top:0;left:0;right:0;bottom:var(--nav);overflow:hidden}
+.slide{
+  position:absolute;inset:0;
+  display:none;flex-direction:column;
+  background:var(--bg);color:var(--text);
+  overflow-y:auto;overflow-x:hidden;
+}
+.slide.active{display:flex}
+
+/* transitions */
+.slide.er{animation:er .3s cubic-bezier(.4,0,.2,1) both}
+.slide.el{animation:el .3s cubic-bezier(.4,0,.2,1) both}
+.slide.xl{animation:xl .3s cubic-bezier(.4,0,.2,1) both}
+.slide.xr{animation:xr .3s cubic-bezier(.4,0,.2,1) both}
+@keyframes er{from{transform:translateX(100%);opacity:0}to{transform:none;opacity:1}}
+@keyframes el{from{transform:translateX(-100%);opacity:0}to{transform:none;opacity:1}}
+@keyframes xl{from{transform:none;opacity:1}to{transform:translateX(-100%);opacity:0}}
+@keyframes xr{from{transform:none;opacity:1}to{transform:translateX(100%);opacity:0}}
+
+/* NAVBAR */
+#navbar{
+  position:fixed;bottom:0;left:0;right:0;height:var(--nav);
+  background:rgba(8,16,30,.95);backdrop-filter:blur(16px);
+  border-top:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 clamp(12px,3vw,32px);z-index:9999;
+}
+.nbtn{background:none;border:1px solid var(--border);color:var(--muted);
+  padding:5px clamp(12px,2vw,22px);border-radius:6px;cursor:pointer;
+  font-size:clamp(11px,1.2vw,13px);transition:all .15s}
+.nbtn:hover{border-color:var(--blue);color:var(--blue)}
+.nbtn.purple:hover{border-color:var(--purple);color:var(--purple)}
+#ctr{font-size:clamp(11px,1.2vw,13px);color:var(--muted)}
+#prog{position:fixed;top:0;left:0;height:3px;
+  background:linear-gradient(90deg,var(--blue),var(--purple));
+  transition:width .3s ease;z-index:9999}
+
+/* SHARED LAYOUT */
+.pad{padding:clamp(28px,4vh,56px) clamp(24px,5vw,80px)}
+.eyebrow{font-size:clamp(10px,1vw,12px);letter-spacing:.18em;color:var(--blue);
+  font-weight:700;text-transform:uppercase;margin-bottom:.6em}
+.eyebrow.pu{color:var(--purple)}
+.h1{font-size:clamp(26px,4vw,52px);font-weight:900;line-height:1.15;
+  background:linear-gradient(130deg,#fff 35%,var(--blue) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.h2{font-size:clamp(20px,2.8vw,38px);font-weight:800;line-height:1.2;margin-bottom:.3em}
+.sub{font-size:clamp(13px,1.4vw,16px);color:var(--muted);line-height:1.6;margin-bottom:clamp(16px,2.5vh,32px)}
+.divline{width:48px;height:3px;border-radius:2px;
+  background:linear-gradient(90deg,var(--blue),var(--purple));margin:clamp(8px,1.5vh,14px) 0 clamp(14px,2.5vh,24px)}
+
+/* cards, bullets */
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:clamp(16px,2vh,24px) clamp(16px,2vw,24px)}
+.card:hover{border-color:var(--blue)}
+.card.pu:hover{border-color:var(--purple)}
+
+.blist{list-style:none}
+.blist li{padding:clamp(7px,1vh,11px) 0 clamp(7px,1vh,11px) clamp(16px,2vw,22px);
+  position:relative;border-bottom:1px solid rgba(255,255,255,.05);
+  font-size:clamp(12px,1.3vw,14.5px);color:#cbd5e1;line-height:1.65}
+.blist li:last-child{border-bottom:none}
+.blist li::before{content:'\25B8';position:absolute;left:0;color:var(--blue);font-size:10px;top:clamp(9px,1.2vh,13px)}
+.blist li strong{color:var(--text)}
+
+.stat-row{display:flex;gap:clamp(10px,2vw,18px);flex-wrap:wrap;margin-bottom:clamp(12px,2vh,20px)}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:10px;
+  padding:clamp(12px,1.5vh,18px) clamp(14px,1.8vw,22px);text-align:center;flex:1;min-width:80px}
+.stat-n{font-size:clamp(24px,3.5vw,42px);font-weight:900;color:var(--blue);line-height:1}
+.stat-n.pu{color:var(--purple)} .stat-n.gr{color:var(--green)}
+.stat-l{font-size:clamp(10px,.9vw,12px);color:var(--muted);margin-top:3px}
+
+.quote{background:rgba(41,181,232,.07);border-left:3px solid var(--blue);
+  border-radius:0 10px 10px 0;padding:clamp(12px,1.8vh,18px) clamp(14px,2vw,22px);
+  font-style:italic;font-size:clamp(12px,1.3vw,15px);color:#e2e8f0;line-height:1.7;margin-top:auto}
+.quote cite{display:block;font-size:clamp(10px,.9vw,12px);color:var(--muted);margin-top:6px;font-style:normal}
+.quote.se{background:rgba(52,211,153,.07);border-left-color:var(--green)}
+
+.ibox{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:clamp(14px,1.8vh,20px)}
+.ibox-t{font-size:clamp(10px,.9vw,12px);font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--blue);margin-bottom:clamp(8px,1.2vh,12px)}
+.ibox-t.pu{color:var(--purple)}
+.ibox-t.gr{color:var(--green)}
+
+.pill{display:inline-block;padding:3px 10px;border-radius:4px;font-size:clamp(10px,.9vw,12px);font-weight:700;margin:3px}
+.pill.bl{background:rgba(41,181,232,.1);border:1px solid rgba(41,181,232,.25);color:var(--blue)}
+.pill.gr{background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.25);color:var(--green)}
+.pill.yl{background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.25);color:var(--yellow)}
+.pill.pu{background:rgba(129,140,248,.1);border:1px solid rgba(129,140,248,.25);color:var(--purple)}
+
+.chip{display:inline-block;padding:5px 16px;border-radius:999px;font-size:clamp(11px,1.1vw,13px);font-weight:600;
+  background:rgba(41,181,232,.12);border:1px solid rgba(41,181,232,.25);color:var(--blue)}
+.chip.pu{background:rgba(129,140,248,.12);border-color:rgba(129,140,248,.25);color:var(--purple)}
+.chip.gr{background:rgba(52,211,153,.12);border-color:rgba(52,211,153,.25);color:var(--green)}
+
+.kw{display:inline-block;background:rgba(41,181,232,.1);border:1px solid rgba(41,181,232,.3);
+  color:var(--blue);padding:2px 9px;border-radius:4px;
+  font-size:clamp(10px,.9vw,12px);font-weight:700;cursor:pointer;transition:all .15s}
+.kw:hover{background:rgba(41,181,232,.22)}
+.kw.pu{background:rgba(129,140,248,.1);border-color:rgba(129,140,248,.3);color:var(--purple)}
+.kw.pu:hover{background:rgba(129,140,248,.22)}
+.kw.gr{background:rgba(52,211,153,.1);border-color:rgba(52,211,153,.3);color:var(--green)}
+
+.back{position:absolute;top:clamp(14px,2vh,22px);right:clamp(14px,2vw,28px);
+  background:rgba(41,181,232,.1);border:1px solid rgba(41,181,232,.25);
+  color:var(--blue);padding:5px 14px;border-radius:6px;cursor:pointer;
+  font-size:clamp(10px,.9vw,12px);font-weight:600;transition:all .15s;z-index:10}
+.back:hover{background:rgba(41,181,232,.22)}
+
+/* 2-col grid */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,3vw,36px);flex:1;min-height:0}
+@media(max-width:860px){.g2{grid-template-columns:1fr}}
+
+/* action grid */
+.ag{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(10px,1.5vw,16px);flex:1;min-height:0}
+@media(max-width:960px){.ag{grid-template-columns:repeat(2,1fr)}}
+
+/* agenda grid */
+.agg{display:grid;grid-template-columns:1fr 1fr;gap:clamp(10px,1.5vw,16px);flex:1;min-height:0}
+@media(max-width:760px){.agg{grid-template-columns:1fr}}
+
+/* SE TIP box */
+.se-tip{background:rgba(52,211,153,.06);border:1px solid rgba(52,211,153,.25);border-radius:10px;
+  padding:clamp(12px,1.5vh,18px) clamp(14px,1.8vw,20px);margin-top:clamp(10px,1.5vh,14px)}
+.se-tip-t{font-size:clamp(10px,.9vw,12px);font-weight:700;color:var(--green);letter-spacing:.08em;margin-bottom:6px}
+.se-tip p{font-size:clamp(11px,1.1vw,13px);color:#a7f3d0;line-height:1.6}
+
+/* vid thumb */
+.vid-thumb{position:relative;cursor:pointer;border-radius:8px;overflow:hidden;background:#000;flex-shrink:0}
+.vid-thumb img{width:100%;display:block;transition:transform .3s}
+.vid-thumb:hover img{transform:scale(1.03)}
+.vid-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  background:rgba(0,0,0,.38);transition:background .2s}
+.vid-thumb:hover .vid-play{background:rgba(0,0,0,.22)}
+.vid-play-btn{width:clamp(40px,5vw,60px);height:clamp(40px,5vw,60px);border-radius:50%;
+  background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;
+  font-size:clamp(16px,2vw,24px);color:#08101e;padding-left:3px;box-shadow:0 4px 20px rgba(0,0,0,.4)}
+.vid-label{position:absolute;bottom:8px;left:10px;
+  background:rgba(8,16,30,.82);color:var(--blue);font-size:clamp(9px,.85vw,11px);
+  font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:.06em}
+
+.dsteps{counter-reset:d;list-style:none}
+.dsteps li{counter-increment:d;padding:clamp(6px,.8vh,9px) 0 clamp(6px,.8vh,9px) clamp(26px,3vw,34px);
+  position:relative;font-size:clamp(11px,1.1vw,13px);color:var(--muted);line-height:1.55;
+  border-bottom:1px solid rgba(255,255,255,.04)}
+.dsteps li:last-child{border-bottom:none}
+.dsteps li::before{content:counter(d);position:absolute;left:0;top:clamp(6px,.8vh,9px);
+  width:clamp(18px,1.8vw,22px);height:clamp(18px,1.8vw,22px);border-radius:50%;
+  background:rgba(41,181,232,.18);color:var(--blue);font-size:11px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;line-height:1}
+</style>
+</head>
+<body>
+<div id="prog" style="width:0%"></div>
+
+<div id="deck">
+
+<!-- S01 TITLE -->
+<div class="slide active" id="s01">
+  <div class="pad" style="flex:1;display:flex;flex-direction:column;justify-content:center;
+    background:radial-gradient(ellipse at 65% 40%,#0d2550 0%,var(--bg) 65%);position:relative">
+    <div style="position:absolute;right:clamp(32px,6vw,100px);top:50%;transform:translateY(-50%);
+      font-size:clamp(100px,18vw,240px);font-weight:900;color:rgba(41,181,232,.04);line-height:1;pointer-events:none">26</div>
+    <div style="max-width:min(680px,75%)">
+      <div class="eyebrow">Snowflake Summit 2026 &middot; Day 2 &middot; Platform Keynote</div>
+      <div class="h1" style="margin-bottom:.2em">Platform Keynote<br>SE Summary</div>
+      <div style="font-size:clamp(14px,1.8vw,22px);color:var(--muted);margin-bottom:clamp(24px,4vh,44px)">
+        SE &middot; Solutions Engineer &middot; 2026&#45;06</div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:clamp(20px,3vh,36px)">
+        <span class="chip">4 Acts</span>
+        <span class="chip">30+ Announcements</span>
+        <span class="chip gr">SE Tips</span>
+        <span class="chip pu">YouTube</span>
+      </div>
+      <div style="font-size:clamp(11px,1.1vw,13px);color:var(--muted);line-height:1.7">
+        by Myeongsu Son (msson) &middot; Snowflake Solutions Engineer<br>
+        CoCo &middot; CoWork &middot; Cortex Agent &middot; Governance
+      </div>
+      <div style="margin-top:clamp(20px,3vh,32px);font-size:clamp(10px,.9vw,12px);color:rgba(41,181,232,.55)">
+        &larr; &rarr; or buttons to navigate &middot; Click blue keywords for details
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S02 AGENDA -->
+<div class="slide" id="s02">
+  <div class="pad" style="flex:1;display:flex;flex-direction:column">
+    <div class="eyebrow">AGENDA</div>
+    <div class="h2">Keynote Overview</div>
+    <div class="sub">Click cards to jump to each section</div>
+    <div class="agg">
+      <div class="card" style="cursor:pointer;transition:all .2s" onclick="goTo('s03')">
+        <div style="font-size:clamp(22px,3vw,32px);margin-bottom:8px">&#x1F4BB;</div>
+        <div style="font-size:clamp(10px,.9vw,11px);font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px">ACT 1</div>
+        <div style="font-size:clamp(14px,1.6vw,18px);font-weight:700;margin-bottom:6px">CoCo &amp; Ease of Use</div>
+        <div style="font-size:clamp(11px,1.1vw,13px);color:var(--muted);line-height:1.5">CoCo Desktop GA &middot; Cloud Agents<br>Data Stream &middot; App Runtime</div>
+        <div style="margin-top:10px;font-size:clamp(10px,.9vw,12px);color:var(--blue);font-weight:700">View &rarr;</div>
+      </div>
+      <div class="card" style="cursor:pointer;transition:all .2s" onclick="goTo('s05')">
+        <div style="font-size:clamp(22px,3vw,32px);margin-bottom:8px">&#x1F6E1;&#xFE0F;</div>
+        <div style="font-size:clamp(10px,.9vw,11px);font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px">ACT 2</div>
+        <div style="font-size:clamp(14px,1.6vw,18px);font-weight:700;margin-bottom:6px">Trust &amp; Governance</div>
+        <div style="font-size:clamp(11px,1.1vw,13px);color:var(--muted);line-height:1.5">Intent-driven Gov &middot; Agent Identity<br>Data Movement Policy &middot; 40x Compiler</div>
+        <div style="margin-top:10px;font-size:clamp(10px,.9vw,12px);color:var(--blue);font-weight:700">View &rarr;</div>
+      </div>
+      <div class="card" style="cursor:pointer;transition:all .2s" onclick="goTo('s07')">
+        <div style="font-size:clamp(22px,3vw,32px);margin-bottom:8px">&#x1F310;</div>
+        <div style="font-size:clamp(10px,.9vw,11px);font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px">ACT 3</div>
+        <div style="font-size:clamp(14px,1.6vw,18px);font-weight:700;margin-bottom:6px">Open &amp; Interoperable</div>
+        <div style="font-size:clamp(11px,1.1vw,13px);color:var(--muted);line-height:1.5">Iceberg V3 GA &middot; SAP Zero-copy<br>Open Sharing &middot; Multi-party Collab</div>
+        <div style="margin-top:10px;font-size:clamp(10px,.9vw,12px);color:var(--blue);font-weight:700">View &rarr;</div>
+      </div>
+      <div class="card pu" style="cursor:pointer;transition:all .2s" onclick="goTo('s09')">
+        <div style="font-size:clamp(22px,3vw,32px);margin-bottom:8px">&#x1F916;</div>
+        <div style="font-size:clamp(10px,.9vw,11px);font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px">ACT 4</div>
+        <div style="font-size:clamp(14px,1.6vw,18px);font-weight:700;margin-bottom:6px">CoWork for Everyone</div>
+        <div style="font-size:clamp(11px,1.1vw,13px);color:var(--muted);line-height:1.5">Personal Work Engine &middot; Cortex Sense<br>Artifacts &middot; Natoma MCP</div>
+        <div style="margin-top:10px;font-size:clamp(10px,.9vw,12px);color:var(--purple);font-weight:700">View &rarr;</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S03 ACT1: CoCo -->
+<div class="slide" id="s03">
+  <div class="pad" style="flex:1;display:flex;flex-direction:column">
+    <button class="back" onclick="goTo('s02')">&#8592; Agenda</button>
+    <div class="eyebrow">ACT 1 &middot; EASE OF USE</div>
+    <div class="h2">Snowflake CoCo &mdash; AI Coding Agent</div>
+    <div class="divline"></div>
+    <div class="g2">
+      <div style="display:flex;flex-direction:column;gap:clamp(10px,1.8vh,18px)">
+        <div class="stat-row">
+          <div class="stat-card"><div class="stat-n">GA</div><div class="stat-l">CoCo Desktop</div></div>
+          <div class="stat-card"><div class="stat-n pu">5&times;</div><div class="stat-l">Spark&rarr;SF</div></div>
+          <div class="stat-card"><div class="stat-n gr">3</div><div class="stat-l">Desktop/Snowsight/CLI</div></div>
+        </div>
+        <ul class="blist">
+          <li><strong>CoCo Desktop GA</strong>: Plan &rarr; Build &rarr; Deploy in one flow</li>
+          <li><strong>Cloud Agents (nearly GA)</strong>: Snowsight/CLI sandbox, scheduled execution, Async API</li>
+          <li><strong>Snap and Ask</strong>: Screenshot any area, ask questions in natural language</li>
+          <li><strong>Snowflake Data Stream (PP)</strong>: Kafka Wire compatible, fully managed, sub-ms latency</li>
+          <li><strong>AIM Migration</strong>: Run Teradata SQL directly on Snowflake, 5x Spark RDD perf</li>
+          <li><strong>Snowflake App Runtime (PP)</strong>: Host Node.js/React apps natively in Snowflake</li>
+        </ul>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <span class="kw" onclick="goTo('s04')">Data Stream Details &rarr;</span>
+          <span class="kw pu" onclick="goTo('s09')">CoWork &rarr;</span>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:clamp(10px,1.8vh,16px)">
+        <div class="ibox">
+          <div class="ibox-t">Demo 1: Snow Music (16:33~)</div>
+          <div class="vid-thumb" data-start="993">
+            <img src="https://snowflake-summit27-platformkeynote-en.netlify.app/screenshots/platform/03_data_stream.jpg" alt="CoCo Desktop Demo">
+            <div class="vid-play"><div class="vid-play-btn">&#9654;</div></div>
+            <div class="vid-label">&#9654; 16:33~ Play</div>
+          </div>
+          <ol class="dsteps" style="margin-top:10px">
+            <li>CoCo diagnoses pipeline failure in natural language (missing device_type column)</li>
+            <li>Data sources: Data Stream + Iceberg + Salesforce Zero-copy</li>
+            <li>Destructive ops require user approval &mdash; AI never acts alone</li>
+          </ol>
+        </div>
+        <div class="se-tip">
+          <div class="se-tip-t">SE TIP</div>
+          <p>CoCo Desktop demo is the most effective first touchpoint for customers. Show the "natural language &rarr; pipeline fix &rarr; deploy" flow. Emphasize that destructive commands require human approval &mdash; addresses the #1 AI safety concern.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S04 Data Stream -->
+<div class="slide" id="s04">
+  <div class="pad" style="flex:1;display:flex;flex-direction:column">
+    <button class="back" onclick="goTo('s03')">&#8592; CoCo</button>
+    <div class="eyebrow">ACT 1 &middot; STREAMING</div>
+    <div class="h2">Snowflake Data Stream</div>
+    <div class="divline"></div>
+    <div class="g2">
+      <div>
+        <ul class="blist">
+          <li><strong>Kafka Wire Protocol compatible</strong> &mdash; drop-in replacement</li>
+          <li>Fully managed by Snowflake, no cluster ops needed</li>
+          <li><strong>Sub-millisecond latency</strong> for real-time use cases</li>
+          <li>Direct integration with Iceberg tables &amp; Snowflake tables</li>
+          <li>Status: <strong>Private Preview</strong> (expected soon)</li>
+          <li>Significant cost reduction vs. self-managed Kafka</li>
+        </ul>
+        <div class="se-tip" style="margin-top:auto">
+          <div class="se-tip-t">SE TIP</div>
+          <p>For customers running Kafka/Confluent: position Data Stream as operational simplification + cost savings. Key differentiator is Zero-copy to Iceberg tables &mdash; no connector maintenance. Calculate TCO savings vs current Kafka + Kafka Connect setup.</p>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:clamp(10px,1.8vh,16px)">
+        <svg viewBox="0 0 480 180" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-height:clamp(130px,22vh,180px);background:#0d1b2a;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,.4)">
+          <text x="240" y="18" text-anchor="middle" font-size="11" fill="#29B5E8" font-family="sans-serif" letter-spacing="1">Kafka-Compatible, Native to Snowflake</text>
+          <rect x="14" y="50" width="90" height="70" rx="6" fill="none" stroke="#29B5E8" stroke-width="1.5" stroke-dasharray="4,3"/>
+          <text x="59" y="74" text-anchor="middle" font-size="10" fill="#fff" font-family="sans-serif" font-weight="700">EVENT</text>
+          <text x="59" y="90" text-anchor="middle" font-size="9" fill="#aac" font-family="sans-serif">App / IoT / Web</text>
+          <line x1="104" y1="85" x2="148" y2="85" stroke="#29B5E8" stroke-width="1.5" marker-end="url(#arr)"/>
+          <circle cx="204" cy="85" r="42" fill="#b8eeff" opacity=".15" stroke="#29B5E8" stroke-width="1.5"/>
+          <text x="204" y="82" text-anchor="middle" font-size="11" fill="#0d1b2a" font-family="sans-serif" font-weight="800">DATA</text>
+          <text x="204" y="96" text-anchor="middle" font-size="11" fill="#0d1b2a" font-family="sans-serif" font-weight="800">STREAM</text>
+          <line x1="246" y1="70" x2="302" y2="55" stroke="#29B5E8" stroke-width="1.5" marker-end="url(#arr)"/>
+          <line x1="246" y1="100" x2="302" y2="115" stroke="#29B5E8" stroke-width="1.5" marker-end="url(#arr)"/>
+          <rect x="304" y="38" width="110" height="34" rx="5" fill="rgba(41,181,232,.12)" stroke="#29B5E8" stroke-width="1"/>
+          <text x="359" y="52" text-anchor="middle" font-size="9.5" fill="#29B5E8" font-family="sans-serif" font-weight="700">ICEBERG</text>
+          <text x="359" y="65" text-anchor="middle" font-size="9.5" fill="#29B5E8" font-family="sans-serif" font-weight="700">TABLES</text>
+          <rect x="304" y="100" width="110" height="34" rx="5" fill="rgba(41,181,232,.12)" stroke="#29B5E8" stroke-width="1"/>
+          <text x="359" y="114" text-anchor="middle" font-size="9.5" fill="#29B5E8" font-family="sans-serif" font-weight="700">SNOWFLAKE</text>
+          <text x="359" y="127" text-anchor="middle" font-size="9.5" fill="#29B5E8" font-family="sans-serif" font-weight="700">TABLES</text>
+          <defs><marker id="arr" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7z" fill="#29B5E8"/></marker></defs>
+        </svg>
+        <div class="ibox">
+          <div class="ibox-t">Key Value Proposition</div>
+          <ul class="blist">
+            <li>No Kafka cluster management</li>
+            <li>Native Snowflake security &amp; governance</li>
+            <li>Direct Iceberg table integration</li>
+            <li>Kafka client libraries just work</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S05 ACT2: Governance -->
+<div class="slide" id="s05">
+  <div class="pad" style="flex:1;display:flex;flex-direction:column">
+    <button class="back" onclick="goTo('s02')">&#8592; Agenda</button>
+    <div class="eyebrow">ACT 2 &middot; TRUST</div>
+    <div class="h2">Governance &amp; Security</div>
+    <div class="divline"></div>
+    <div class="g2">
+      <div>
+        <ul class="blist">
+          <li><strong>Intent-driven Governance</strong>: "Protect all PII" &rarr; auto-classify &amp; create policies</li>
+          <li><span class="kw" onclick="goTo('s06')">Agent Identity &rarr;</span> &mdash; detect agent context, apply masking per agent type</li>
+          <li><strong>Data Movement Policies</strong>: Block tagged data from external export at system level</li>
+          <li><strong>Multi-party Approvals (PP)</strong>: 2-person approval for high-risk ops</li>
+          <li><strong>Horizon Context (NEW)</strong>: Auto-provide semantic signals to agents</li>
+          <li><strong>Interactive Compiler</strong>: 40x faster compilation &rarr; 3-4x workload speedup</li>
+          <li><strong>Adaptive Compute GA</strong>: ~2x performance vs Gen 1</li>
+          <li><strong>AI Cost Governance</strong>: AI usage in budgets, per-user quotas</li>
+        </ul>
+        <div class="se-tip">
+          <div class="se-tip-t">SE TIP</div>
+          <p>Governance is THE enabler for AI adoption. When customers hesitate on CoWork/CoCo deployment, lead with governance story: "You can enable AI for everyone BECAUSE controls are built-in." Intent-driven governance + Agent Identity + DMP = complete AI guardrails.</p>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:clamp(10px,1.8vh,16px)">
+        <div class="ibox">
+          <div class="ibox-t">Demo 2: Governance (38:43~)</div>
+          <div class="vid-thumb" data-start="2323">
+            <img src="https://snowflake-summit27-platformkeynote-en.netlify.app/screenshots/platform/05_caitlin_thomson_reuters.jpg" alt="Governance Demo">
+            <div class="vid-play"><div class="vid-play-btn">&#9654;</div></div>
+            <div class="vid-label">&#9654; 38:43~ Play</div>
+          </div>
+          <ol class="dsteps" style="margin-top:10px">
+            <li>CoWork requests VIP contacts &rarr; masking policy blocks values</li>
+            <li>Export to external stage &rarr; Data Movement Policy blocks (live failure)</li>
+            <li>Trust Center: Unified view of AI guardrails + data security + DMP violations</li>
+          </ol>
+        </div>
+        <div class="quote">
+          "Governance is an enabler, not a constraint."
+          <cite>&mdash; Caitlin Hugerty, Thomson Reuters VP of AI &amp; Data</cite>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S06 Agent Identity -->
+<div class="slide" id="s06">
+  <div class="pad" style="flex:1;display:flex;flex-direction:column">
+    <button class="back" onclick="goTo('s05')">&#8592; Governance</button>
+    <div class="eyebrow">ACT 2 &middot; DETAIL</div>
+    <div class="h2">Agent Identity &amp; Horizon Context</div>
+    <div class="divline"></div>
+    <div class="g2">
+      <div>
+        <div style="font-size:clamp(12px,1.2vw,14px);font-weight:700;color:var(--blue);margin-bottom:clamp(8px,1.2vh,12px)">Agent Identity</div>
+        <ul class="blist" style="margin-bottom:clamp(16px,2.5vh,24px)">
+          <li>New context function to detect agent execution context</li>
+          <li>Reference in masking &amp; row access policies</li>
+          <li>Different data access per agent type</li>
+          <li>"Traditional security models were designed for human users. Agents are different."</li>
+        </ul>
+        <div style="font-size:clamp(12px,1.2vw,14px);font-weight:700;color:var(--purple);margin-bottom:clamp(8px,1.2vh,12px)">Horizon Context (NEW)</div>
+        <ul class="blist">
+          <li>Auto-provide semantic signals to CoCo/CoWork/Cortex agents</li>
+          <li>Integrates Semantic Views + external metadata connectors</li>
+          <li>Agents understand business context &rarr; more accurate answers</li>
+          <li><span class="kw pu" onclick="goTo('s10')">Cortex Sense &rarr;</span> accuracy 24% &rarr; 83%</li>
+        </ul>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:clamp(10px,1.8vh,16px)">
+        <div class="ibox" style="border-color:rgba(129,140,248,.25)">
+          <div class="ibox-t pu">Horizon AI Guardrails</div>
+          <ul class="blist">
+            <li>Protect CoCo/CoWork from jailbreak attempts at runtime</li>
+            <li>Defend against prompt injection (known + zero-day)</li>
+          </ul>
+        </div>
+        <div class="se-tip">
+          <div class="se-tip-t">SE TIP</div>
+          <p>Agent Identity is a game-changer for customers building Cortex Agents. Show how the same table can expose different columns to different agents via masking policies. This addresses enterprise security teams' concerns about "AI accessing everything."</p>
+        </div>
+        <span class="kw" onclick="goTo('s05')">&#8592; Full Governance</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S07 ACT3: Open -->
+<div class="slide" id="s07">
+  <div class="pad" style="flex:1;display:flex;flex-direction:column">
+    <button class="back" onclick="goTo('s02')">&#8592; Agenda</button>
+    <div class="eyebrow">ACT 3 &middot; OPENNESS</div>
+    <div class="h2">Open &amp; Interoperable</div>
+    <div class="divline"></div>
+    <div class="g2">
+      <div>
+        <ul class="blist">
+          <li><strong>Apache Iceberg V3 GA</strong>: Most comprehensive implementation. V4 spec contribution</li>
+          <li><strong>Managed Iceberg Storage GA</strong>: AWS + Azure GA (GCP coming)</li>
+          <li><strong>SAP Zero-copy GA</strong>: Most requested partner integration</li>
+          <li><strong>Workday &middot; IBM Watsonx &middot; AVEVA</strong>: Additional Zero-copy partners</li>
+          <li><strong>Open Sharing (PP)</strong>: Share data via Iceberg REST to non-Snowflake users</li>
+          <li><strong>Multi-party Collaboration GA</strong>: Multiple orgs in one secure env. Netflix early adopter</li>
+          <li><strong>Data Re-sharing GA</strong>: Freely re-share received data to 3rd parties</li>
+          <li><strong>Open Semantic Interchange</strong>: Snowflake-founded open semantic layer standard</li>
+        </ul>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px">
+          <span class="kw" onclick="goTo('s08')">Iceberg V3 Details &rarr;</span>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:clamp(10px,1.8vh,16px)">
+        <div class="ibox">
+          <div class="ibox-t">Zero-copy Partner Expansion</div>
+          <div style="margin-top:6px">
+            <span class="pill gr">SAP GA</span>
+            <span class="pill yl">Workday NEW</span>
+            <span class="pill bl">IBM Watsonx NEW</span>
+            <span class="pill pu">AVEVA NEW</span>
+            <span class="pill gr">Salesforce</span>
+          </div>
+          <div style="margin-top:10px;font-size:clamp(11px,1vw,13px);color:var(--muted);line-height:1.6">
+            Query application data directly without movement.<br>SAP is GA, others in Preview.
+          </div>
+        </div>
+        <div class="se-tip">
+          <div class="se-tip-t">SE TIP</div>
+          <p>For SAP customers: SAP Zero-copy GA is a major deal-closer. Demo the "query SAP data in Snowflake without ETL" story. For multi-cloud customers: position Iceberg V3 + Open Sharing as "no vendor lock-in, data stays open."</p>
+        </div>
+        <div class="quote">
+          "Nobody feels locked in with Snowflake."
+          <cite>&mdash; Christian Kleinerman</cite>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S08 Iceberg V3 -->
+<div class="slide" id="s08">
+  <div class="pad" style="flex:1;display:flex;flex-direction:column">
+    <button class="back" onclick="goTo('s07')">&#8592; Open</button>
+    <div class="eyebrow">ACT 3 &middot; DETAIL</div>
+    <div class="h2">Apache Iceberg V3 &amp; Open Sharing</div>
+    <div class="divline"></div>
+    <div class="g2">
+      <div>
+        <ul class="blist">
+          <li>Iceberg V3: Most comprehensive implementation in the industry</li>
+          <li>Actively contributing to <strong>V4 spec development</strong></li>
+          <li>Full bi-directional catalog interoperability</li>
+          <li><strong>Managed Iceberg Storage</strong>: AWS + Azure GA, zero vendor lock-in</li>
+          <li><strong>Open Sharing (PP)</strong>: Iceberg REST catalog for non-Snowflake consumers</li>
+          <li><strong>Open Semantic Interchange</strong>: Snowflake-founded standard for semantic layer portability</li>
+        </ul>
+        <div class="se-tip" style="margin-top:auto">
+          <div class="se-tip-t">SE TIP</div>
+          <p>Key competitive response: "Snowflake IS Iceberg." When facing Databricks comparisons, emphasize V3 GA + V4 contribution + managed storage on all 3 clouds. Open Sharing eliminates the "what about non-Snowflake consumers?" objection entirely.</p>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:clamp(10px,1.8vh,16px)">
+        <div class="ibox">
+          <div class="ibox-t">Iceberg V3 Key Capabilities</div>
+          <ul class="blist">
+            <li>Full ACID transactions on open format</li>
+            <li>Time travel &amp; zero-copy clone</li>
+            <li>Cross-engine compatibility guaranteed</li>
+            <li>Managed storage = Snowflake handles compaction, optimization</li>
+          </ul>
+        </div>
+        <div class="ibox" style="border-color:rgba(52,211,153,.25)">
+          <div class="ibox-t gr">Customer Value</div>
+          <ul class="blist">
+            <li>No data duplication across engines</li>
+            <li>Freedom to use best tool for each job</li>
+            <li>Reduced storage costs via open format</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S09 ACT4: CoWork -->
+<div class="slide" id="s09">
+  <div class="pad" style="flex:1;display:flex;flex-direction:column">
+    <button class="back" onclick="goTo('s02')">&#8592; Agenda</button>
+    <div class="eyebrow pu">ACT 4 &middot; AI FOR EVERYONE</div>
+    <div class="h2" style="background:linear-gradient(130deg,#fff 35%,var(--purple) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Snowflake CoWork</div>
+    <div class="divline" style="background:linear-gradient(90deg,var(--purple),var(--blue))"></div>
+    <div class="g2">
+      <div style="display:flex;flex-direction:column;gap:clamp(10px,1.8vh,18px)">
+        <div class="stat-row">
+          <div class="stat-card"><div class="stat-n pu">83%</div><div class="stat-l">Cortex Sense Accuracy</div></div>
+          <div class="stat-card"><div class="stat-n">24%</div><div class="stat-l">Without Context</div></div>
+        </div>
+        <ul class="blist">
+          <li><strong>Personal Work Engine</strong>: One interface, AI selects the right agent automatically</li>
+          <li><strong>User Memory</strong>: Remembers preferences, past conversations, work style</li>
+          <li><strong>Scheduled Tasks</strong>: "Send me this report every morning at 6am"</li>
+          <li><strong>Cortex Sense (NEW)</strong>: Runtime accuracy engine using full business context</li>
+          <li><strong>Artifacts</strong>: Live dashboards shared across org, auto-refreshing</li>
+          <li><strong>Deep Research GA</strong>: Parallel sub-agents for in-depth analysis reports</li>
+          <li><strong>Mobile App GA</strong>: Full CoWork on iOS</li>
+        </ul>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <span class="kw pu" onclick="goTo('s10')">Cortex Sense &rarr;</span>
+          <span class="kw pu" onclick="goTo('s11')">Natoma MCP &rarr;</span>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:clamp(10px,1.8vh,16px)">
+        <div class="ibox" style="border-color:rgba(129,140,248,.25)">
+          <div class="ibox-t pu">Demo 3: CoWork (1:41:40~)</div>
+          <div class="vid-thumb" data-start="6100">
+            <img src="https://snowflake-summit27-platformkeynote-en.netlify.app/screenshots/platform/11_christian_cowork.jpg" alt="CoWork Demo">
+            <div class="vid-play"><div class="vid-play-btn">&#9654;</div></div>
+            <div class="vid-label">&#9654; 1:41:40~ Play</div>
+          </div>
+          <ol class="dsteps" style="margin-top:10px">
+            <li>"Start my day" &rarr; integrated briefing from email/Slack/sales data</li>
+            <li>Scheduled: auto-send email every 6am</li>
+            <li>VIP spike +45% chart shared as Artifact</li>
+            <li>Deep Research: parallel sub-agents for analysis report</li>
+          </ol>
+        </div>
+        <div class="se-tip">
+          <div class="se-tip-t">SE TIP</div>
+          <p>CoWork is the "AI for non-technical users" story. Position it for business stakeholders: executives, analysts, ops. The "Start my day" demo resonates with C-level. Combine with governance story to address security concerns from IT.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S10 Cortex Sense -->
+<div class="slide" id="s10">
+  <div class="pad" style="flex:1;display:flex;flex-direction:column">
+    <button class="back" onclick="goTo('s09')">&#8592; CoWork</button>
+    <div class="eyebrow pu">CORTEX SENSE</div>
+    <div class="h2">Runtime Accuracy Engine</div>
+    <div class="divline" style="background:linear-gradient(90deg,var(--green),var(--blue))"></div>
+    <div class="g2">
+      <div>
+        <div style="display:flex;align-items:center;gap:clamp(16px,3vw,36px);
+          background:var(--card);border:1px solid var(--border);border-radius:14px;
+          padding:clamp(16px,2.5vh,28px) clamp(20px,3vw,36px);margin-bottom:clamp(12px,1.8vh,20px)">
+          <div style="flex:1;text-align:center">
+            <div style="font-size:clamp(42px,7vw,72px);font-weight:900;line-height:1;color:var(--red)">24%</div>
+            <div style="font-size:clamp(11px,1vw,13px);color:var(--muted);margin-top:4px">Generic Frontier Model<br>(no context)</div>
+          </div>
+          <div style="font-size:clamp(24px,4vw,48px);color:var(--blue)">&rarr;</div>
+          <div style="flex:1;text-align:center">
+            <div style="font-size:clamp(42px,7vw,72px);font-weight:900;line-height:1;color:var(--green)">83%</div>
+            <div style="font-size:clamp(11px,1vw,13px);color:var(--muted);margin-top:4px">Cortex Sense<br>(full business context)</div>
+          </div>
+        </div>
+        <ul class="blist">
+          <li>Dynamically assembles <strong>data + business definitions + operational knowledge</strong> at runtime</li>
+          <li>Unlike static semantic layers: <strong>dynamically composes context</strong></li>
+          <li>Provides most relevant context in real-time per query</li>
+          <li>Works in both CoWork and CoCo, auto-activated</li>
+        </ul>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:clamp(10px,1.8vh,16px)">
+        <div class="ibox">
+          <div class="ibox-t">Horizon Context Integration</div>
+          <ul class="blist">
+            <li>Horizon Context <strong>collects semantic signals</strong></li>
+            <li>Cortex Sense <strong>dynamically composes at runtime</strong></li>
+            <li>Uses Semantic Views + external metadata connectors</li>
+          </ul>
+        </div>
+        <div class="se-tip">
+          <div class="se-tip-t">SE TIP</div>
+          <p>The 24% &rarr; 83% accuracy jump is the most compelling stat in the entire keynote. Use this when customers say "AI hallucinations concern us." Show that Cortex Sense + Semantic Views = grounded, accurate responses. Prerequisite: help customers build good Semantic Views first.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S11 Natoma -->
+<div class="slide" id="s11">
+  <div class="pad" style="flex:1;display:flex;flex-direction:column">
+    <button class="back" onclick="goTo('s09')">&#8592; CoWork</button>
+    <div class="eyebrow pu">ACT 4 &middot; ACQUISITION</div>
+    <div class="h2">Natoma &mdash; Enterprise MCP Hub</div>
+    <div class="divline" style="background:linear-gradient(90deg,var(--purple),var(--blue))"></div>
+    <div class="g2">
+      <div>
+        <ul class="blist">
+          <li><strong>Announced May 27, 2026</strong>, confirmed at Summit</li>
+          <li>Enterprise <strong>MCP (Model Context Protocol) platform</strong></li>
+          <li>Centralized MCP gateway: ID verification + access policies + audit at tool-call level</li>
+          <li>Connects CoCo/CoWork to <strong>100+ business systems</strong></li>
+          <li>Google Drive, Gmail, Zoom, Jira, Slack, GitHub, Microsoft 365</li>
+          <li>All external access governed by <strong>Snowflake security &amp; access control</strong></li>
+          <li>MCP is an open standard led by Anthropic</li>
+        </ul>
+        <div class="se-tip">
+          <div class="se-tip-t">SE TIP</div>
+          <p>Natoma answers "how does CoWork connect to our tools?" Position as the secure bridge: unlike raw MCP, Natoma adds enterprise governance (auth, audit, rate limiting) on every tool call. Key differentiator vs competitors who just support raw MCP.</p>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:clamp(10px,1.8vh,16px)">
+        <div class="ibox" style="border-color:rgba(129,140,248,.25)">
+          <div class="ibox-t pu">How It Works in Demo 3</div>
+          <ol class="dsteps">
+            <li>CoWork generates analysis result</li>
+            <li>Slack MCP: one-click send to Slack channel</li>
+            <li>Snowflake governance applies to external sends too</li>
+          </ol>
+        </div>
+        <div class="ibox">
+          <div class="ibox-t">Supported Connectors (100+)</div>
+          <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap">
+            <span class="pill bl">Slack</span>
+            <span class="pill gr">Gmail</span>
+            <span class="pill yl">Jira</span>
+            <span class="pill pu">GitHub</span>
+            <span class="pill bl">Zoom</span>
+            <span class="pill gr">Drive</span>
+            <span class="pill yl">M365</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S12 Customer: Samsung -->
+<div class="slide" id="s12">
+  <div class="pad" style="flex:1;display:flex;flex-direction:column">
+    <button class="back" onclick="goTo('s02')">&#8592; Agenda</button>
+    <div class="eyebrow">CUSTOMER STORY</div>
+    <div class="h2">Samsung Electronics &mdash; AX CoWork</div>
+    <div class="divline"></div>
+    <div class="g2">
+      <div>
+        <ul class="blist">
+          <li><strong>AX (Agent Experience)</strong>: From UX &rarr; AX paradigm shift</li>
+          <li>1,000 executives use CoWork <strong>daily</strong> for decision-making</li>
+          <li>Report requests that took days now completed in <strong>minutes</strong></li>
+          <li>Strict governance: Korean data sovereignty + role-based access</li>
+          <li>Natural language interface eliminated training barrier</li>
+          <li>Deep Research used for competitive analysis reports</li>
+        </ul>
+        <div class="se-tip">
+          <div class="se-tip-t">SE TIP</div>
+          <p>Samsung case is GOLD for Korean enterprise customers. Key takeaways: 1) Start with executive users (high-impact, low-technical-barrier), 2) Governance-first approach enabled rapid adoption, 3) "AX" framing resonates with CxO audiences. Use this reference proactively.</p>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:clamp(10px,1.8vh,16px)">
+        <div class="ibox" style="border-color:rgba(129,140,248,.25)">
+          <div class="ibox-t pu">Video (1:19:30~)</div>
+          <div class="vid-thumb" data-start="4770">
+            <img src="https://snowflake-summit27-platformkeynote-en.netlify.app/screenshots/platform/09_samsung.jpg" alt="Samsung">
+            <div class="vid-play"><div class="vid-play-btn">&#9654;</div></div>
+            <div class="vid-label">&#9654; 1:19:30~ Play</div>
+          </div>
+        </div>
+        <div class="quote">
+          "AX is the new UX &mdash; agent experience defines how enterprises will work."
+          <cite>&mdash; Samsung Electronics, Snowflake Summit 2026</cite>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S13 ACTIONS -->
+<div class="slide" id="s13">
+  <div class="pad" style="flex:1;display:flex;flex-direction:column">
+    <button class="back" onclick="goTo('s02')">&#8592; Agenda</button>
+    <div class="eyebrow gr">NEXT STEPS</div>
+    <div class="h2">SE Action Items</div>
+    <div class="divline" style="background:linear-gradient(90deg,var(--green),var(--blue))"></div>
+    <div class="ag">
+      <div class="card" style="display:flex;flex-direction:column;gap:8px">
+        <span class="pill gr" style="align-self:flex-start">Now</span>
+        <div style="font-size:clamp(12px,1.3vw,14px);font-weight:700">CoCo Desktop Demo</div>
+        <div style="font-size:clamp(11px,1.1vw,13px);color:var(--muted);line-height:1.65">Install CoCo Desktop, practice the Snow Music demo flow. Natural language &rarr; diagnose &rarr; fix &rarr; deploy. Most effective first customer touchpoint.</div>
+      </div>
+      <div class="card" style="display:flex;flex-direction:column;gap:8px">
+        <span class="pill gr" style="align-self:flex-start">Now</span>
+        <div style="font-size:clamp(12px,1.3vw,14px);font-weight:700">CoWork + Governance Story</div>
+        <div style="font-size:clamp(11px,1.1vw,13px);color:var(--muted);line-height:1.65">Prepare the "AI for everyone + governance built-in" narrative. Lead with governance to address security concerns, then show CoWork capabilities.</div>
+      </div>
+      <div class="card" style="display:flex;flex-direction:column;gap:8px">
+        <span class="pill yl" style="align-self:flex-start">Soon</span>
+        <div style="font-size:clamp(12px,1.3vw,14px);font-weight:700">Cortex Agent Workshop</div>
+        <div style="font-size:clamp(11px,1.1vw,13px);color:var(--muted);line-height:1.65">Build hands-on workshop: Agent Identity + Semantic Views + Cortex Sense. Show the 24% &rarr; 83% accuracy improvement with real customer data.</div>
+      </div>
+      <div class="card" style="display:flex;flex-direction:column;gap:8px">
+        <span class="pill yl" style="align-self:flex-start">Soon</span>
+        <div style="font-size:clamp(12px,1.3vw,14px);font-weight:700">SAP Zero-copy POC</div>
+        <div style="font-size:clamp(11px,1.1vw,13px);color:var(--muted);line-height:1.65">For SAP customers: prepare Zero-copy integration demo. Now GA &mdash; no more "it's in preview" objection. Calculate TCO vs traditional ETL.</div>
+      </div>
+      <div class="card" style="display:flex;flex-direction:column;gap:8px">
+        <span class="pill pu" style="align-self:flex-start">Explore</span>
+        <div style="font-size:clamp(12px,1.3vw,14px);font-weight:700">Data Stream Positioning</div>
+        <div style="font-size:clamp(11px,1.1vw,13px);color:var(--muted);line-height:1.65">Identify customers with Kafka pain. Position Data Stream as cost+ops simplification. Build TCO comparison model for Kafka vs Data Stream.</div>
+      </div>
+      <div class="card" style="display:flex;flex-direction:column;gap:8px">
+        <span class="pill pu" style="align-self:flex-start">Explore</span>
+        <div style="font-size:clamp(12px,1.3vw,14px);font-weight:700">Samsung AX Reference</div>
+        <div style="font-size:clamp(11px,1.1vw,13px);color:var(--muted);line-height:1.65">Use Samsung case for Korean enterprise pitches. "1,000 executives daily" is a compelling proof point. AX framing works for C-level conversations.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S14 CLOSING -->
+<div class="slide" id="s14">
+  <div class="pad" style="flex:1;display:flex;flex-direction:column;background:radial-gradient(ellipse at 30% 60%,#0d2550 0%,var(--bg) 65%)">
+    <div class="eyebrow" style="margin-bottom:clamp(12px,2vh,20px)">SNOWFLAKE SUMMIT 2026 &middot; CLOSING</div>
+    <div class="g2" style="flex:1;min-height:0;align-items:center">
+      <div style="display:flex;flex-direction:column;justify-content:center;gap:clamp(14px,2.5vh,28px)">
+        <div style="font-size:clamp(16px,2.2vw,26px);color:var(--muted);font-style:italic;line-height:1.9">
+          "Snowflake takes you from<br>
+          <span style="color:var(--text);font-style:normal;font-weight:700">'Can we?'</span> to<br>
+          <span style="color:var(--blue);font-style:normal;font-weight:700">'Shall we?'</span>"
+        </div>
+        <div style="font-size:clamp(12px,1.2vw,14px);color:var(--muted)">&mdash; Christian Kleinerman, EVP of Product</div>
+        <div class="se-tip" style="margin-top:10px">
+          <div class="se-tip-t">FINAL SE NOTE</div>
+          <p>This keynote's message: Snowflake is no longer just a data warehouse. It's the AI platform. Lead conversations with CoCo (developers) + CoWork (everyone) + Governance (security). The platform story is now: Data + AI + Apps, governed and open.</p>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <span class="kw" onclick="goTo('s01')">Start</span>
+          <span class="kw" onclick="goTo('s02')">Agenda</span>
+          <span class="kw gr" onclick="goTo('s13')">Actions</span>
+        </div>
+      </div>
+      <div style="position:relative;padding-top:56.25%;border-radius:10px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.5)">
+        <iframe style="position:absolute;top:0;left:0;width:100%;height:100%;border:0"
+          src="https://www.youtube.com/embed/NFTdHYp9uJo?start=5777&rel=0&modestbranding=1" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /deck -->
+
+<!-- NAVBAR -->
+<div id="navbar">
+  <button class="nbtn" id="btn-prev" onclick="prevSlide()">&#8592; Prev</button>
+  <div style="display:flex;align-items:center;gap:10px">
+    <button class="nbtn" onclick="goTo('s01')">&#8962;</button>
+    <span id="ctr">1 / 14</span>
+    <button class="nbtn purple" onclick="goTo('s02')">&#9776; Agenda</button>
+  </div>
+  <button class="nbtn" id="btn-next" onclick="nextSlide()">Next &#8594;</button>
+</div>
+
+<script>
+const ORDER=['s01','s02','s03','s04','s05','s06','s07','s08','s09','s10','s11','s12','s13','s14'];
+let cur=0,busy=false;
+
+function idx(id){return ORDER.indexOf(id)}
+
+function goTo(id,dir){
+  if(busy)return;
+  const to=idx(id);
+  if(to<0||to===cur)return;
+  const d=dir!==undefined?dir:(to>cur?1:-1);
+  busy=true;
+  const fe=document.getElementById(ORDER[cur]);
+  const te=document.getElementById(id);
+  te.style.display='flex';
+  te.classList.add(d>0?'er':'el');
+  fe.classList.add(d>0?'xl':'xr');
+  setTimeout(()=>{
+    fe.style.display='none';
+    fe.classList.remove('active','xl','xr');
+    te.classList.remove('er','el');
+    te.classList.add('active');
+    cur=to;ui();busy=false;
+  },300);
+}
+function nextSlide(){if(cur<ORDER.length-1)goTo(ORDER[cur+1],1)}
+function prevSlide(){if(cur>0)goTo(ORDER[cur-1],-1)}
+function ui(){
+  const n=cur+1,t=ORDER.length;
+  document.getElementById('ctr').textContent=n+' / '+t;
+  document.getElementById('prog').style.width=(n/t)*100+'%';
+  document.getElementById('btn-prev').style.opacity=cur===0?'.3':'1';
+  document.getElementById('btn-next').style.opacity=cur===ORDER.length-1?'.3':'1';
+}
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key==='ArrowDown')nextSlide();
+  if(e.key==='ArrowLeft'||e.key==='ArrowUp')prevSlide();
+  if(e.key==='Home')goTo('s01');
+  if(e.key==='End')goTo(ORDER[ORDER.length-1]);
+});
+ui();
+
+// Video thumb click to embed
+document.querySelectorAll('.vid-thumb').forEach(el=>{
+  el.addEventListener('click',function(){
+    const start=this.dataset.start||'0';
+    const end=this.dataset.end||'';
+    const wrap=document.createElement('div');
+    wrap.style.cssText='position:relative;padding-bottom:56.25%;border-radius:8px;overflow:hidden;background:#000;margin-bottom:10px;flex-shrink:0';
+    const iframe=document.createElement('iframe');
+    iframe.src='https://www.youtube.com/embed/NFTdHYp9uJo?start='+start+(end?'&end='+end:'')+'&autoplay=1&rel=0&modestbranding=1';
+    iframe.style.cssText='position:absolute;top:0;left:0;width:100%;height:100%;border:0';
+    iframe.allow='accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture';
+    iframe.allowFullscreen=true;
+    wrap.appendChild(iframe);
+    this.replaceWith(wrap);
+  });
+});
+</script>
+</body>
+</html>
