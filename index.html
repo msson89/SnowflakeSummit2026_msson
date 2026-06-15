@@ -43,6 +43,7 @@ html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;font-famil
 .badge-pp{background:rgba(251,191,36,.12);border:1px solid rgba(251,191,36,.35);color:var(--yellow)}
 .badge-prp{background:rgba(248,113,113,.12);border:1px solid rgba(248,113,113,.35);color:var(--red)}
 .badge-new{background:rgba(129,140,248,.12);border:1px solid rgba(129,140,248,.35);color:var(--purple)}
+.badge-base{background:rgba(148,163,184,.12);border:1px solid rgba(148,163,184,.35);color:var(--muted)}
 .stat-row{display:flex;gap:clamp(8px,1.5vw,14px);flex-wrap:wrap;margin-bottom:clamp(10px,1.5vh,16px)}
 .stat-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:clamp(10px,1.2vh,14px) clamp(10px,1.4vw,16px);text-align:center;flex:1;min-width:60px}
 .stat-n{font-size:clamp(20px,2.8vw,34px);font-weight:900;color:var(--blue);line-height:1}
@@ -94,6 +95,7 @@ html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;font-famil
         <span><span class="badge badge-ga">GA</span> 정식 출시</span>
         <span><span class="badge badge-pp">PuPr</span> Public Preview</span>
         <span><span class="badge badge-prp">PrPr</span> Private Preview</span>
+        <span><span class="badge badge-base">기본</span> 기존 기본 기능</span>
       </div>
       <div style="font-size:clamp(10px,.95vw,12px);color:var(--muted);line-height:1.6;margin-top:12px">
         발표자: Benoit Dageville &middot; Christian Kleinerman &middot; Dash Desai<br>
@@ -151,10 +153,13 @@ html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;font-famil
       <div>
         <div class="sub">정형&middot;반정형&middot;비정형 데이터(JSON, Parquet, Avro, PDF, 이미지, 오디오, 비디오)를 단일 플랫폼에서 처리합니다.</div>
         <ul class="blist">
-          <li><strong>제로 관리</strong>: 인덱스 설계, 파티션 튜닝, 용량 산정 등 전통적 DBA 작업 불필요</li>
+          <li><strong>제로 관리</strong> <span class="badge badge-base">기본</span>: 인덱스 설계, 파티션 튜닝, 용량 산정 등 전통적 DBA 작업 불필요</li>
           <li><strong>Adaptive Compute</strong> <span class="badge badge-ga">GA</span>: 워크로드별 최적 컴퓨팅 자동 배분, 기존 대비 약 2배 성능. T-shirt 사이징 불필요</li>
-          <li><strong>멀티 클라우드</strong>: AWS, Azure, GCP 어디서든 동일한 경험</li>
+          <li><strong>멀티 클라우드</strong> <span class="badge badge-base">기본</span>: AWS, Azure, GCP 어디서든 동일한 경험</li>
           <li><strong>Code Bundles</strong> <span class="badge badge-pp">PuPr</span>: Python/Java 파일을 래핑 없이 Snowflake에서 직접 실행</li>
+          <li><strong>Snowflake AIM (AI Migration)</strong> <span class="badge badge-ga">GA</span>: SnowConvert AI + Snowpark Migration + Datometry 통합. 코드 마이그레이션 평균 88% 가속</li>
+          <li><strong>Snowflake Postgres</strong> <span class="badge badge-ga">GA</span>: 완전 관리형 PostgreSQL. Private Link, 고객 관리 키, Secrets 지원</li>
+          <li><strong>Postgres Data Mirroring</strong> <span class="badge badge-pp">PuPr</span>: Postgres → Snowflake 실시간 CDC 복제, 추가 도구 없이 저지연 동기화</li>
         </ul>
       </div>
       <div style="display:flex;flex-direction:column;gap:clamp(10px,1.5vh,14px)">
@@ -188,8 +193,9 @@ html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;font-famil
         <li><strong>자연어로 전체 개발 워크플로우 자율 수행</strong>: 데이터 파이프라인 구축, SQL 작성, dbt 빌드, 앱 배포</li>
         <li><strong>Cloud Agents</strong> <span class="badge badge-ga">GA</span>: 로컬 환경 없이 Snowsight에서 전체 개발 워크플로우 실행. 예약 실행, Async API 지원</li>
         <li><strong>CoCo Desktop</strong> <span class="badge badge-ga">GA</span>: Plan → Build → Deploy 하나의 흐름. CLI 수준 파워를 데스크톱 UI에서 제공</li>
-        <li><strong>Snap and Ask</strong>: 화면 캡처 후 자연어로 질문, 시각적 컨텍스트 완전 이해</li>
-        <li><strong>Spark → Snowflake 마이그레이션</strong>: 5배 성능 향상, 6개월 작업을 6일에 완료</li>
+        <li><strong>Snap and Ask</strong> <span class="badge badge-prp">PrPr</span>: 화면 캡처 후 자연어로 질문, 시각적 컨텍스트 완전 이해</li>
+        <li><strong>Skill Catalog</strong> <span class="badge badge-pp">PuPr</span>: 검증된 에이전트 스킬을 조직 전체에서 검색&middot;재사용&middot;공유</li>
+        <li><strong>Spark → Snowflake 마이그레이션</strong> <span class="badge badge-ga">GA</span>: 5배 성능 향상, 6개월 작업을 6일에 완료</li>
         <li><strong>파괴적 명령은 사용자 승인 필수</strong> — AI가 단독으로 행동하지 않음</li>
         <li>VS Code Extension, Excel Extension, Slackbot 등 Multi-surface 지원</li>
       </ul>
@@ -222,7 +228,7 @@ html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;font-famil
         <li><strong>User Memory</strong> <span class="badge badge-ga">GA</span>: 사용 패턴&middot;선호도를 학습, 사용할수록 응답 품질 향상</li>
         <li><strong>Deep Research</strong> <span class="badge badge-ga">GA</span>: 다단계 추론, 병렬 서브 에이전트로 심층 분석 보고서 자동 생성</li>
         <li><strong>Artifacts</strong> <span class="badge badge-ga">GA</span>: 실시간 데이터 대시보드를 자동 생성&middot;거버넌스 적용&middot;조직 전체에 공유</li>
-        <li><strong>Scheduled Tasks</strong>: "매주 월요일 6시에 이 분석을 이메일로 보내줘" — 자연어로 반복 업무 예약</li>
+        <li><strong>Scheduled Tasks</strong> <span class="badge badge-ga">GA</span>: "매주 월요일 6시에 이 분석을 이메일로 보내줘" — 자연어로 반복 업무 예약</li>
         <li><strong>Mobile App</strong> <span class="badge badge-ga">GA</span>: iOS에서도 CoWork 전체 기능 사용 가능</li>
         <li><strong>Samsung</strong>: 임직원 1,000명이 매일 CoWork 활용, 데이터 과학자 0명</li>
       </ul>
@@ -260,6 +266,8 @@ html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;font-famil
           <li><strong>Snowflake Marketplace</strong> <span class="badge badge-ga">GA</span>: 3,300개+ 라이브 데이터셋&middot;서비스 즉시 구독</li>
           <li><strong>Apache Iceberg v3</strong> <span class="badge badge-ga">GA</span>: 삭제 벡터, 행 리니지, Variant 타입 등 가장 광범위한 V3 스펙 지원. 벤더 종속 없이 데이터 레이크 연동</li>
           <li><strong>Native Apps Framework</strong> <span class="badge badge-ga">GA</span>: Snowflake 위에서 앱을 개발&middot;배포&middot;수익화</li>
+          <li><strong>Snowflake App Runtime</strong> <span class="badge badge-pp">PuPr</span>: Node.js/React 앱을 Snowflake 보안 경계 내에서 호스팅. <code>snow app deploy</code> 한 줄로 배포</li>
+          <li><strong>Streamlit in Snowflake</strong> <span class="badge badge-ga">GA</span>: 컨테이너 런타임, Git 통합, 워크스페이스 지원</li>
         </ul>
       </div>
       <div style="display:flex;flex-direction:column;gap:clamp(10px,1.5vh,14px)">
@@ -291,11 +299,12 @@ html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;font-famil
     <div class="g2">
       <ul class="blist">
         <li><strong>SAP Zero-copy</strong> <span class="badge badge-ga">GA</span>: 가장 많이 요청된 파트너 통합 — ETL 없이 SAP 데이터 직접 쿼리</li>
-        <li><strong>Workday Data Cloud</strong> <span class="badge badge-new">NEW</span>: HR&middot;재무 데이터를 이동 없이 직접 쿼리</li>
-        <li><strong>IBM watsonx.data</strong> <span class="badge badge-new">NEW</span>: DB2&middot;메인프레임 데이터 직접 연동</li>
-        <li><strong>AVEVA Connect</strong> <span class="badge badge-new">NEW</span>: 산업 OT 데이터(공장&middot;설비) 직접 통합</li>
+        <li><strong>Workday Data Cloud</strong> <span class="badge badge-pp">PuPr</span>: HR&middot;재무 데이터를 이동 없이 직접 쿼리</li>
+        <li><strong>IBM watsonx.data</strong> <span class="badge badge-pp">PuPr</span>: DB2&middot;메인프레임 데이터 직접 연동</li>
+        <li><strong>AVEVA Connect</strong> <span class="badge badge-pp">PuPr</span>: 산업 OT 데이터(공장&middot;설비) 직접 통합</li>
         <li><strong>Snowflake Datastream</strong> <span class="badge badge-prp">PrPr</span>: 완전 관리형 Kafka 호환 스트리밍. 기존 Kafka 클라이언트 설정 변경만으로 Sub-second 수집</li>
-        <li><strong>Snowflake Openflow</strong> <span class="badge badge-ga">GA</span>: Apache NiFi 기반 완전 관리형 데이터 통합. Oracle(GA), Veeva, BigQuery, MongoDB 커넥터</li>
+        <li><strong>Snowflake Openflow</strong> <span class="badge badge-ga">GA</span>: Apache NiFi 기반 완전 관리형 데이터 통합. Oracle(GA), Veeva/BigQuery/MongoDB <span class="badge badge-pp">PuPr</span></li>
+        <li><strong>Query Across External Sources</strong> <span class="badge badge-prp">PrPr</span>: CoWork에서 Redshift, Postgres 등 외부 소스에 직접 AI 쿼리 실행</li>
       </ul>
       <div style="display:flex;flex-direction:column;gap:clamp(10px,1.5vh,14px)">
         <div class="ibox" style="border-color:rgba(52,211,153,.25)">
@@ -364,10 +373,11 @@ html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;font-famil
     <div class="divline" style="background:linear-gradient(90deg,var(--purple),var(--blue))"></div>
     <div class="g2">
       <ul class="blist">
-        <li><strong>상시 암호화</strong>: End-to-End AES-256, Tri-Secret Secure(고객 관리 키)</li>
-        <li><strong>인증</strong>: SOC 2 Type II, HIPAA, FedRAMP, ISO 27001, PCI DSS</li>
+        <li><strong>상시 암호화</strong> <span class="badge badge-base">기본</span>: End-to-End AES-256, Tri-Secret Secure(고객 관리 키)</li>
+        <li><strong>인증</strong> <span class="badge badge-base">기본</span>: SOC 2 Type II, HIPAA, FedRAMP, ISO 27001, PCI DSS</li>
         <li><strong>Dynamic Data Masking</strong> <span class="badge badge-ga">GA</span>, <strong>Row Access Policy</strong> <span class="badge badge-ga">GA</span>: 세분화된 접근 제어</li>
         <li><strong>AI Agent Identity</strong> <span class="badge badge-ga">GA</span>: 모든 AI 에이전트에 암호화 기반 고유 신원 부여, 에이전트별 RBAC, 전체 활동 감사 추적</li>
+        <li><strong>Horizon AI Guardrails</strong> <span class="badge badge-ga">GA</span>: CoCo/CoWork에서 프롬프트 인젝션&middot;탈옥 시도(제로데이 포함) 실시간 차단</li>
         <li><strong>Multi-Party Approval</strong> <span class="badge badge-pp">PuPr</span>: 최고 위험 작업에 2인 이상 승인 필수화</li>
         <li><strong>Data Movement Policies</strong> <span class="badge badge-prp">PrPr</span>: 태그된 데이터의 외부 반출(Stage, 다운로드) 차단</li>
         <li><strong>AI Security Posture Mgmt</strong> <span class="badge badge-pp">PuPr</span>: AI 에이전트 보안 설정 지속 모니터링, 프롬프트 인젝션&middot;탈옥 방어</li>
@@ -401,7 +411,7 @@ html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;font-famil
         <li><strong>Cortex Sense</strong> <span class="badge badge-prp">PrPr</span>: 쿼리 이력&middot;대시보드&middot;메타데이터로부터 런타임에 맥락 자동 조합 — <strong>정확도 86%</strong> (맥락 없는 모델 24% 대비)</li>
         <li><strong>Intent-Driven Governance</strong> <span class="badge badge-prp">PrPr</span>: 자연어로 의도 표현 → 자동 분류&middot;정책 적용<br><em style="color:var(--blue)">"내 DB의 모든 PII를 보호해줘"</em></li>
         <li><strong>Trust Center</strong> <span class="badge badge-ga">GA</span>: 보안 상태 실시간 스캔&middot;권고, 데이터 유출 탐지 <span class="badge badge-pp">PuPr</span></li>
-        <li><strong>Observe by Snowflake</strong>: 로그, APM, 인프라 모니터링 네이티브 통합</li>
+        <li><strong>Observe by Snowflake</strong> <span class="badge badge-ga">GA</span>: 로그, APM, 인프라 모니터링 네이티브 통합. Iceberg 테이블 기반, CoCo 인터페이스 지원</li>
         <li><strong>Access History &amp; Query Profile</strong> <span class="badge badge-ga">GA</span>: 완전 감사 추적</li>
       </ul>
       <div style="display:flex;flex-direction:column;gap:clamp(10px,1.5vh,14px)">
@@ -431,9 +441,9 @@ html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;font-famil
         <li><strong>Time Travel</strong> <span class="badge badge-ga">GA</span>: 최대 90일 데이터 복구 및 실수 방지</li>
         <li><strong>Fail-safe</strong> <span class="badge badge-ga">GA</span>: 7일 추가 보호 계층</li>
         <li><strong>차세대 계정 복제</strong> <span class="badge badge-ga">GA</span>: 로그 기반 약 20배 빠른 복제, SLA 기반 RPO 보증</li>
-        <li><strong>교차 리전/교차 클라우드 복제</strong>: 재해 발생 시 자동 페일오버</li>
+        <li><strong>교차 리전/교차 클라우드 복제</strong> <span class="badge badge-base">기본</span>: 재해 발생 시 자동 페일오버</li>
         <li>2025년 클라우드 장애 시 <strong>300+</strong> 고객 워크로드 무중단 전환 실적</li>
-        <li><strong>99.9% SLA</strong> (Business Critical Edition 이상)</li>
+        <li><strong>99.9% SLA</strong> <span class="badge badge-base">기본</span> (Business Critical Edition 이상)</li>
       </ul>
       <div style="display:flex;flex-direction:column;gap:clamp(10px,1.5vh,14px)">
         <div class="stat-row">
@@ -460,13 +470,13 @@ html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;font-famil
       <div>
         <div class="sub">소비 기반(Consumption-Based) 요금 모델 — 사용한 만큼만 과금됩니다.</div>
         <ul class="blist">
-          <li><strong>컴퓨팅/스토리지 분리 과금</strong>: 쿼리하지 않을 때 컴퓨팅 비용 $0</li>
+          <li><strong>컴퓨팅/스토리지 분리 과금</strong> <span class="badge badge-base">기본</span>: 쿼리하지 않을 때 컴퓨팅 비용 $0</li>
           <li><strong>Adaptive Compute</strong> <span class="badge badge-ga">GA</span>: 최적 리소스 자동 배분, 과잉 프로비저닝 제거</li>
-          <li><strong>자동 일시 중지/재개</strong>: 유휴 시 자동 중지</li>
-          <li><strong>압축 스토리지</strong>: 평균 4~7배 압축</li>
+          <li><strong>자동 일시 중지/재개</strong> <span class="badge badge-base">기본</span>: 유휴 시 자동 중지</li>
+          <li><strong>압축 스토리지</strong> <span class="badge badge-base">기본</span>: 평균 4~7배 압축</li>
           <li><strong>AI Cost Controls</strong> <span class="badge badge-ga">GA</span>: 기존 예산 체계 연동, 사용자별 할당량, 부서별 비용 귀속, 초과 시 자동 프로시저 실행</li>
           <li><strong>Budget Custom Actions</strong> <span class="badge badge-ga">GA</span>: 지출 임계값 시 저장 프로시저 자동 트리거</li>
-          <li><strong>Serverless 확대</strong>: Snowpipe Streaming, Dynamic Tables, Datastream 등</li>
+          <li><strong>Serverless 확대</strong> <span class="badge badge-ga">GA</span>: Snowpipe Streaming, Dynamic Tables, Datastream 등</li>
         </ul>
       </div>
       <div style="display:flex;flex-direction:column;gap:clamp(10px,1.5vh,14px)">
@@ -505,7 +515,7 @@ html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;font-famil
           <li><strong>AI_COMPLETE 멀티모달 확장</strong> <span class="badge badge-ga">GA</span>: 텍스트&middot;이미지&middot;PDF + 오디오&middot;비디오를 SQL 함수 하나로 처리</li>
           <li><strong>Cortex AI Function Studio</strong> <span class="badge badge-pp">PuPr</span>: 기업 전용 AI 함수 생성&middot;평가&middot;배포, 프롬프트 표준화</li>
           <li><strong>Cortex Training</strong> <span class="badge badge-prp">PrPr</span>: 데이터 이동 없이 오픈 웨이트 모델(Qwen, Mistral) 파인튜닝 및 강화학습. 동일 GPU 대비 약 2배 학습 효율</li>
-          <li><strong>Agentic Search</strong> <span class="badge badge-ga">GA</span>: 비정형 문서에서 구조화된 팩트 추출 → 분석 쿼리 실행 → 정확한 수치 응답</li>
+          <li><strong>Agentic Search</strong> <span class="badge badge-pp">PuPr</span>: 비정형 문서에서 구조화된 팩트 추출 → 분석 쿼리 실행 → 정확한 수치 응답</li>
           <li><strong>Grok (xAI)</strong> <span class="badge badge-new">NEW</span>: Anthropic, OpenAI, Google, Meta, Mistral, DeepSeek에 이어 xAI Grok 탑재</li>
         </ul>
       </div>
@@ -546,6 +556,11 @@ html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;font-famil
         <ul class="blist">
           <li><strong>Online A/B Testing</strong> <span class="badge badge-pp">PuPr</span>: 실시간 트래픽에서 모델 실험, 승자 자동 승격</li>
           <li><strong>Streaming Feature Serving</strong> <span class="badge badge-ga">GA</span>: 약 10ms 지연, 2초 미만 데이터 신선도</li>
+        </ul>
+        <div style="font-size:13px;font-weight:700;color:var(--blue);margin-bottom:8px;margin-top:12px">성능 (Compute)</div>
+        <ul class="blist">
+          <li><strong>Interactive Compiler</strong> <span class="badge badge-ga">GA</span>: 컴파일 속도 40배 향상, 전체 워크로드 3~4배 가속</li>
+          <li><strong>Unistore Engine Optimization</strong> <span class="badge badge-pp">PuPr</span>: Hybrid Table 지연&middot;처리량 8배 개선</li>
         </ul>
       </div>
       <div style="display:flex;flex-direction:column;gap:clamp(10px,1.5vh,14px)">
